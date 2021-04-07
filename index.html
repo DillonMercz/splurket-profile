@@ -259,6 +259,7 @@
               })
               .then(function (data) {
                 //should be a base64 string by now
+                email1 = data.encryptedstring;
                 first_name_send = document.getElementById("first_name").value;
                 last_name_send = document.getElementById("last_name").value;
                 username_send = document.getElementById("username").value;
@@ -266,7 +267,7 @@
                 discord_send = document.getElementById("discord").value;
                 company_send = document.getElementById("company").value;
                 phone_send = document.getElementById("phone").value;
-                db.collection('users').doc(userEmail1).set({
+                db.collection('users').doc(email1).set({
                         first_name: first_name_send,
                         last_name: last_name_send,
                         username: username_send,
