@@ -248,10 +248,6 @@
                 //should be a base64 string by now
                 savechanges(data);
             });
-          } else {
-            console.log('fuck')
-            document.getElementById("avatar").style.display = "none";
-            document.getElementById("login").style.display = "block";
           }
         function savechanges(data) {
           email = data.encryptedstring;
