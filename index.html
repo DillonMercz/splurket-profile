@@ -217,7 +217,7 @@
                     console.log("Error getting document:", error);
                 });
         }
-      }
+      })
         function signout() {
             firebase.auth().signOut().then(() => {
               // Sign-out successful.
@@ -249,7 +249,7 @@
                 //should be a base64 string by now
                 savechanges(data);
             });
-          })
+          }
         function savechanges(data) {
           email = data.encryptedstring;
           first_name_send = document.getElementById("first_name").value;
