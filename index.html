@@ -140,9 +140,6 @@
         const db = firebase.firestore();
         db.settings({ timestampsInSnapshots: true }); 
         function savechanges1(){
-          firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-              // User is signed in.
               var user = firebase.auth().currentUser;
               //splurket@gmail.com
               var email1 = user.email;
@@ -175,8 +172,6 @@
                   savechanges(data);
               });
             }
-        })
-      }
         function getuserdata(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
