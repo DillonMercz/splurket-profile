@@ -46,25 +46,25 @@
           <div class="form-group">
             <label class="col-md-3 control-label">Username:</label>
             <div class="col-md-8">
-              <input class="form-control" type="text" id="username" value="janeuser">
+              <input class="form-control" type="text" id="username" value="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="first_name" value="Jane">
+              <input class="form-control" type="text" id="first_name" value="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="last_name" value="Bishop">
+              <input class="form-control" type="text" id="last_name" value="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="email" value="janesemail@gmail.com">
+              <input class="form-control" type="text" id="email" value="">
             </div>
           </div>
           <div class="form-group">
@@ -77,6 +77,12 @@
             <label class="col-lg-3 control-label">Company:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" id="company" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone Number:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="phone" value="">
             </div>
           </div>
           <!--<div class="form-group">
@@ -272,6 +278,13 @@
                     if (doc.exists) {
                         data1 = doc.data()
                         pro_pic = data1.pro_pic;
+                        first_name = data1.first_name;
+                        last_name = data1.last_name;
+                        username = data1.username;
+                        email = data1.email;
+                        discord = data1.discord;
+                        company = data1.company
+                        phone = data1.phone_number
                         if (data1.username == "" ){
                             user_name = data1.email
                         }
@@ -284,7 +297,14 @@
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         //document.getElementById("avatar").style.display = "block";
                         document.getElementById("avatarpic").style.display = "block";
-                        console.log(shown)
+                        document.getElementById("first_name").value = first_name;
+                        document.getElementById("last_name").value = last_name;
+                        document.getElementById("username").value = username;
+                        document.getElementById("email").value = email;
+                        document.getElementById("discord").value = discord;
+                        document.getElementById("company").value = company;
+                        document.getElementById("phone").value = phone;
+
                     } else {
                         // doc.data() will be undefined in this case
                         console.log("No such document!");
