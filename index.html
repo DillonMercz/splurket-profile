@@ -110,15 +110,6 @@
   </div>
 </div>
 <hr>
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -246,7 +237,6 @@
           discord_send = document.getElementById("discord").value;
           company_send = document.getElementById("company").value;
           phone_send = document.getElementById("phone").value;
-          e.preventDefault();
           db.collection('users').doc(userEmail1).set({
                   first_name: first_name_send,
                   last_name: last_name_send,
