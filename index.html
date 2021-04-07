@@ -100,7 +100,7 @@
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <button type="button" class="btn btn-primary" onclick="savechanges1()" value="Save Changes">Save Changes</button>
+              <button type="button" class="btn btn-primary" onclick="savechanges()" value="Save Changes">Save Changes</button>
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
@@ -139,39 +139,46 @@
         firebase.initializeApp(config);
         const db = firebase.firestore();
         db.settings({ timestampsInSnapshots: true }); 
-        function savechanges1(){
-              var user = firebase.auth().currentUser;
-              //splurket@gmail.com
-              var email1 = user.email;
-              
-              /*var email = getParameterByName('user'); 
-              console.log(email)*/
-              //still splurket
-              
-              var myHeaders = new Headers();
-              myHeaders.append("Content-Type", "application/json");
-              myHeaders.append("Accept", "application/json, /;q=0.5");
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
 
-              var raw = JSON.stringify({
-                "stringtoencrypt": `${email1}`
-              });
-              //document.write(raw)
-              var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-              };
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
 
-              fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                  //should be a base64 string by now
-                  savechanges(data);
-              });
-            }
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                getuserdata(data);
+            });
+          } else {
+            console.log('fuck')
+            document.getElementById("avatar").style.display = "none";
+            document.getElementById("login").style.display = "block";
+          }
+        });
         function getuserdata(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
@@ -222,23 +229,52 @@
               // An error happened.
             });
         }
-        function savechanges(data) {
-          email = data.encryptedstring;
-          first_name_send = document.getElementById("first_name").value;
-          last_name_send = document.getElementById("last_name").value;
-          username_send = document.getElementById("username").value;
-          email_send = document.getElementById("email").value;
-          discord_send = document.getElementById("discord").value;
-          company_send = document.getElementById("company").value;
-          phone_send = document.getElementById("phone").value;
-          db.collection('users').doc(email).set({
-                  first_name: first_name_send,
-                  last_name: last_name_send,
-                  username: username_send,
-                  email: email_send,
-                  discord: discord_send,
-                  phone_number: phone_send,
-                  company: company_send,
+        function savechanges() {
+          var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                first_name_send = document.getElementById("first_name").value;
+                last_name_send = document.getElementById("last_name").value;
+                username_send = document.getElementById("username").value;
+                email_send = document.getElementById("email").value;
+                discord_send = document.getElementById("discord").value;
+                company_send = document.getElementById("company").value;
+                phone_send = document.getElementById("phone").value;
+                db.collection('users').doc(userEmail1).set({
+                        first_name: first_name_send,
+                        last_name: last_name_send,
+                        username: username_send,
+                        email: email_send,
+                        discord: discord_send,
+                        phone_number: phone_send,
+                        company: company_send,
+            })
           });
         }
   </script>
