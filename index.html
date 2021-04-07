@@ -26,9 +26,7 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <div id="avatarpic" hidden="hidden">
-            <img src="" class="avatar img-circle" alt="avatar" height="200px" width="200px">
-          </div>
+            <img src="" class="avatar img-circle" alt="avatar" height="200px" width="200px" hidden="hidden">
           <h6>Upload a Profile photo...</h6>
           
           <input type="file" class="form-control">
@@ -42,7 +40,7 @@
           <i class="fa fa-coffee"></i>
           This is an <strong>.alert</strong>. Use this to show important messages to the user.
         </div>-->
-        <h3>Profile Info</h3>
+        <h3 id="avatarusername"></h3>
         
         <form class="form-horizontal" role="form">
           <div class="form-group">
@@ -276,10 +274,11 @@
                         }
                         document.getElementById("avatarpic").src = pro_pic;
                         //document.getElementById("avatarpic1").src = pro_pic;
-                        document.getElementById("avatarusername").innerText = user_name;
-                        document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
+                        document.getElementById("avatarusername").innerText = "Profile Info for " + user_name;
+                        //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         document.getElementById("avatar").style.display = "block";
                         document.getElementById("avatarpic").style.display = "block";
+                        console.log(shown)
                     } else {
                         // doc.data() will be undefined in this case
                         console.log("No such document!");
