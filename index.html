@@ -139,41 +139,43 @@
         firebase.initializeApp(config);
         const db = firebase.firestore();
         db.settings({ timestampsInSnapshots: true }); 
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var user = firebase.auth().currentUser;
-            //splurket@gmail.com
-            var email1 = user.email;
-            
-            /*var email = getParameterByName('user'); 
-            console.log(email)*/
-            //still splurket
-            
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json, /;q=0.5");
+        function savechanges1(){
+          firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var user = firebase.auth().currentUser;
+              //splurket@gmail.com
+              var email1 = user.email;
+              
+              /*var email = getParameterByName('user'); 
+              console.log(email)*/
+              //still splurket
+              
+              var myHeaders = new Headers();
+              myHeaders.append("Content-Type", "application/json");
+              myHeaders.append("Accept", "application/json, /;q=0.5");
 
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
+              var raw = JSON.stringify({
+                "stringtoencrypt": `${email1}`
+              });
+              //document.write(raw)
+              var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+              };
 
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                getuserdata(data);
-            });
-          }
+              fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                  //should be a base64 string by now
+                  savechanges(data);
+              });
+            }
+        }
         function getuserdata(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
@@ -225,31 +227,6 @@
               // An error happened.
             });
         }
-        function savechanges1(){
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json, /;q=0.5");
-
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                savechanges(data);
-            });
-          }
         function savechanges(data) {
           email = data.encryptedstring;
           first_name_send = document.getElementById("first_name").value;
