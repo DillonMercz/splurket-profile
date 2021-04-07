@@ -173,12 +173,7 @@
                 //should be a base64 string by now
                 getuserdata(data);
             });
-          } else {
-            console.log('fuck')
-            document.getElementById("avatar").style.display = "none";
-            document.getElementById("login").style.display = "block";
           }
-        });
         function getuserdata(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
