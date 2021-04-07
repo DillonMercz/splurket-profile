@@ -37,7 +37,7 @@
         var localdata= {'email': userSIEmail, 'password': userSIPassword};
         // Put the object into storage
         localStorage.setItem('usercreds', JSON.stringify(localdata));
-        location.href=redirect + '?user=' + userSIEmail1
+        location.href="https://myaccount.splurket.com/index.html" + '?user=' + userSIEmail1
     }).catch((error) => {
         // Handle Errors here.
         console.log(error)
