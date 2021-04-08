@@ -1,4 +1,4 @@
-$(function () {
+window.parent.$(function () {
     $image_crop = $('#image_demo').croppie(
         {
             enableExif: true,
