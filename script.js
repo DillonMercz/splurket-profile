@@ -71,7 +71,7 @@ $(function () {
     }
 
     $('#closeModal').click(function(){
-        var vmyImage = document.getElementById("avatarpic");
+        var vmyImage = document.getElementById("myImage");
         var vmyImg = new Image();
 
         vmyImage.title = "Your image!";
@@ -117,7 +117,7 @@ $(function () {
     });
 
     function withJSpure(resp) {
-        var imgtag = document.getElementById("avatarpic");
+        var imgtag = document.getElementById("myImage");
         imgtag.title = selectedFile.name;
 
         var nameImg = document.getElementById("nameMyImage");
