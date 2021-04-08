@@ -93,26 +93,26 @@ $(function () {
         document.getElementById('myImg').append(vmyImg);
     });
 
-    window.parent.$('#confirmCrop').click(function () {
+    $('#confirmCrop').click(function () {
         $image_crop.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (response) {            
-            window.parent.$('#noteInfo').html('You can select another picture!');
+            $('#noteInfo').html('You can select another picture!');
 
             withJSpure(response);
 
-            window.parent.$('#nameMyImg').html(selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
 
-            window.parent.$('#myImg').html('');
-            window.parent.$("<img>", {
+            $('#myImg').html('');
+            $("<img>", {
                 "src": response,
                 "class": 'img-thumbnail img-chosen',
                 "alt": 'Your image!',
                 "title": selectedFile.name
             }).appendTo("#myImg");            
 
-            window.parent.$('#uploadImageModal').modal('hide');
+            $('#uploadImageModal').modal('hide');
         })
     });
 
