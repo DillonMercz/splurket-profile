@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="croppie/croppie.css">
+  <script src="croppie/croppie.js"></script>
 
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js"></script>
   <style>/* CSS used here will be applied after bootstrap.css */</style>
 </head>
 <body>
@@ -26,49 +30,54 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-            <head>
-              <meta charset="UTF-8">
-              <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-              <link rel='stylesheet' href='https://foliotek.github.io/Croppie/croppie.css'>
-              <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
-
-            </head>
-            <body>
-            <!-- partial:index.partial.html -->
-              <div class="row">
-                            <div class="col-xs-12">
-                              <label class="cabinet center-block">
-                                <figure>
-                                  <img src="" class="gambar img-responsive img-thumbnail" id="item-img-output" />
-                                  <figcaption><i class="fa fa-camera"></i></figcaption>
-                                </figure>
-                                <input type="file" class="item-img file center-block" name="file_photo"/>
-                              </label>
-                            </div>
+                      <div id="AddAlert" class="alert alert-warning alert-block" style="display:none;">
+                          <p id="AddAlertMessage"></p>
+                      </div>
+                          <div class="mt-3 row">
+                              <div class="col-md-6">
+                                  <div id="uploaded_pic">
+                                      <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
+                                          src="img/avatar_placeholder_temporary.png">
+                                  </div>
+                                  <input hidden type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
+                                  <button id="btnGrab" class="btn btn-success">Select New</button>
+                                  </div>
+                                  <br>
+                              </div>
                           </div>
-
-            <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">
-                              <?=multiLanguage( "Edit Foto" , "Edit Photo" )?></h4>
-                          </div>
-                          <div class="modal-body">
-                                <div id="upload-demo" class="center-block"></div>
-                          </div>
-                           <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
                   </div>
-                            </div>
+
+
+                  <!-- The Modal -->
+                  <div class="modal" id="uploadImageModal">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                  <h4 class="modal-title">Crop Image</h4>
+                                  <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                  <div id="image_demo" style="width: 300px;"></div>
+                              </div>
+
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+                                  <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
+                              </div>
+
                           </div>
-                        </div>
-            <!-- partial -->
-              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-            <script src='https://foliotek.github.io/Croppie/croppie.js'></script>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+                      </div>
+                  </div>
+              </body>
+              <script>
+                  $("#myImage").click(function() {
+                      $("input[id='upload_image']").click();
+              });
+              </script>
 
             </body>
 
