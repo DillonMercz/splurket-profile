@@ -1,0 +1,34 @@
+label.cabinet{
+	display: block;
+	cursor: pointer;
+}
+
+label.cabinet input.file{
+	position: relative;
+	height: 100%;
+	width: auto;
+	opacity: 0;
+	-moz-opacity: 0;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  margin-top:-30px;
+}
+
+#upload-demo{
+	width: 250px;
+	height: 250px;
+  padding-bottom:25px;
+}
+.img-thumbnail{
+	border-radius: 50%;
+	height:150px;
+	width:150px;
+}
+.croppie-container .cr-viewport {
+	border-radius: 50%;
+	height:150px;
+	width:150px;
+}
+.cr-viewport .cr-vp-square{
+	width:150px;
+	height:150px;
+}
