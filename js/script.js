@@ -1,5 +1,5 @@
-window.parent.$(function () {
-    $image_crop = window.parent.$('#image_demo').croppie(
+$(function () {
+    $image_crop = $('#image_demo').croppie(
         {
             enableExif: true,
             viewport: {
@@ -13,13 +13,13 @@ window.parent.$(function () {
             }
         });
 
-    window.parent.$('#btnGrab').click(function () {
-        window.parent.$('#upload_image').click();
+    $('#btnGrab').click(function () {
+        $('#upload_image').click();
     });
 
     var selectedFile;
 
-    window.parent.$("#upload_image").change(function (evt) {
+    $("#upload_image").change(function (evt) {
         if ((selectedFile = evt.target.files[0])) {
             validateImageSizeType(selectedFile);
         }
@@ -36,7 +36,7 @@ window.parent.$(function () {
             else
             {
                 showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                window.parent.$('#upload_image').val('');
+                $('#upload_image').val('');
             }
         };
 
@@ -48,15 +48,15 @@ window.parent.$(function () {
     }
 
     function showAlert(msj) {
-        window.parent.$('#AddAlertMessage').html(msj);
-        window.parent.$("#AddAlert").show();
-        setTimeout(function () { window.parent.$("#AddAlert").hide(); }, 3500);
+        $('#AddAlertMessage').html(msj);
+        $("#AddAlert").show();
+        setTimeout(function () { $("#AddAlert").hide(); }, 3500);
     }
 
     function readImgShowModal(selectedImg){
         
         //document.getElementById("upload_image").value = "";
-        window.parent.$('#upload_image').val('');
+        $('#upload_image').val('');
 
         var reader = new FileReader();
         reader.onload = function (event) {
@@ -67,10 +67,10 @@ window.parent.$(function () {
             });
         }
         reader.readAsDataURL(selectedImg);
-        window.parent.window.parent.$('#uploadImageModal').modal('show');
+        $('#uploadImageModal').modal('show');
     }
 
-    window.parent.$('#closeModal').click(function(){
+    $('#closeModal').click(function(){
         var vmyImage = document.getElementById("myImage");
         var vmyImg = new Image();
 
@@ -93,26 +93,26 @@ window.parent.$(function () {
         document.getElementById('myImg').append(vmyImg);
     });
 
-    window.parent.window.parent.$('#confirmCrop').click(function () {
+    $('#confirmCrop').click(function () {
         $image_crop.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (response) {            
-            window.parent.window.parent.$('#noteInfo').html('You can select another picture!');
+            $('#noteInfo').html('You can select another picture!');
 
             withJSpure(response);
 
-            window.parent.window.parent.$('#nameMyImg').html(selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
 
-            window.parent.window.parent.$('#myImg').html('');
-            window.parent.window.parent.$("<img>", {
+            $('#myImg').html('');
+            $("<img>", {
                 "src": response,
                 "class": 'img-thumbnail img-chosen',
                 "alt": 'Your image!',
                 "title": selectedFile.name
             }).appendTo("#myImg");            
 
-            window.parent.window.parent.$('#uploadImageModal').modal('hide');
+            $('#uploadImageModal').modal('hide');
         })
     });
 
@@ -125,19 +125,19 @@ window.parent.$(function () {
         imgtag.src = resp;
     }
 
-    /*     window.parent.$('#upload_image').change(function (evnt) {
-            window.parent.$('#noteInfo').html('You can select another picture!');
+    /*     $('#upload_image').change(function (evnt) {
+            $('#noteInfo').html('You can select another picture!');
         
             onChangeUploadJSpure(evnt);
         
             var selectedFile = event.target.files[0];
             var reader = new FileReader();
         
-            window.parent.$('#myImg').attr('title', selectedFile.name);
-            window.parent.$('#nameMyImg').html(selectedFile.name);
+            $('#myImg').attr('title', selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
         
             reader.onload = function (event) {
-                window.parent.$("#myImg").attr("src", event.target.result);
+                $("#myImg").attr("src", event.target.result);
             };
         
             reader.readAsDataURL(selectedFile);
