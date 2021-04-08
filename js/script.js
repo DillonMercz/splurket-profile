@@ -1,8 +1,8 @@
-parent.$(function () {
+$(function () {
     console.log(window.parent)
     console.log(window.[this])
     parent = this.window.parent;
-    $image_crop = parent.$('#image_demo').croppie(
+    $image_crop = $('#image_demo').croppie(
         {
             enableExif: true,
             viewport: {
@@ -22,7 +22,7 @@ parent.$(function () {
 
     var selectedFile;
 
-    parent.$("#upload_image").change(function (evt) {
+    $("#upload_image").change(function (evt) {
         if ((selectedFile = evt.target.files[0])) {
             validateImageSizeType(selectedFile);
         }
@@ -39,7 +39,7 @@ parent.$(function () {
             else
             {
                 showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                parent.$('#upload_image').val('');
+                $('#upload_image').val('');
             }
         };
 
@@ -51,15 +51,15 @@ parent.$(function () {
     }
 
     function showAlert(msj) {
-        parent.$('#AddAlertMessage').html(msj);
-        parent.$("#AddAlert").show();
-        setTimeout(function () { parent.$("#AddAlert").hide(); }, 3500);
+        $('#AddAlertMessage').html(msj);
+        $("#AddAlert").show();
+        setTimeout(function () { $("#AddAlert").hide(); }, 3500);
     }
 
     function readImgShowModal(selectedImg){
         
         //document.getElementById("upload_image").value = "";
-        parent.$('#upload_image').val('');
+        $('#upload_image').val('');
 
         var reader = new FileReader();
         reader.onload = function (event) {
@@ -70,10 +70,10 @@ parent.$(function () {
             });
         }
         reader.readAsDataURL(selectedImg);
-        parent.$('#uploadImageModal').modal('show');
+        $('#uploadImageModal').modal('show');
     }
 
-    parent.$('#closeModal').click(function(){
+    $('#closeModal').click(function(){
         var vmyImage = document.getElementById("myImage");
         var vmyImg = new Image();
 
@@ -96,26 +96,26 @@ parent.$(function () {
         document.getElementById('myImg').append(vmyImg);
     });
 
-    parent.$('#confirmCrop').click(function () {
+    $('#confirmCrop').click(function () {
         $image_crop.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (response) {            
-            parent.$('#noteInfo').html('You can select another picture!');
+            $('#noteInfo').html('You can select another picture!');
 
             withJSpure(response);
 
-            parent.$('#nameMyImg').html(selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
 
-            parent.$('#myImg').html('');
-            parent.$("<img>", {
+            $('#myImg').html('');
+            $("<img>", {
                 "src": response,
                 "class": 'img-thumbnail img-chosen',
                 "alt": 'Your image!',
                 "title": selectedFile.name
             }).appendTo("#myImg");            
 
-            parent.$('#uploadImageModal').modal('hide');
+            $('#uploadImageModal').modal('hide');
         })
     });
 
@@ -128,19 +128,19 @@ parent.$(function () {
         imgtag.src = resp;
     }
 
-    /*     parent.$('#upload_image').change(function (evnt) {
-            parent.$('#noteInfo').html('You can select another picture!');
+    /*     $('#upload_image').change(function (evnt) {
+            $('#noteInfo').html('You can select another picture!');
         
             onChangeUploadJSpure(evnt);
         
             var selectedFile = event.target.files[0];
             var reader = new FileReader();
         
-            parent.$('#myImg').attr('title', selectedFile.name);
-            parent.$('#nameMyImg').html(selectedFile.name);
+            $('#myImg').attr('title', selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
         
             reader.onload = function (event) {
-                parent.$("#myImg").attr("src", event.target.result);
+                $("#myImg").attr("src", event.target.result);
             };
         
             reader.readAsDataURL(selectedFile);
