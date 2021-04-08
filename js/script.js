@@ -1,5 +1,5 @@
 $(function () {
-    window.parent.$image_crop = $('#image_demo').croppie(
+    $image_crop = $('#image_demo').croppie(
         {
             enableExif: true,
             viewport: {
@@ -19,7 +19,7 @@ $(function () {
 
     var selectedFile;
 
-    window.parent.$("#upload_image").change(function (evt) {
+    $("#upload_image").change(function (evt) {
         if ((selectedFile = evt.target.files[0])) {
             validateImageSizeType(selectedFile);
         }
@@ -36,7 +36,7 @@ $(function () {
             else
             {
                 showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                window.parent.$('#upload_image').val('');
+                $('#upload_image').val('');
             }
         };
 
@@ -48,15 +48,15 @@ $(function () {
     }
 
     function showAlert(msj) {
-        window.parent.$('#AddAlertMessage').html(msj);
-        window.parent.$("#AddAlert").show();
+        $('#AddAlertMessage').html(msj);
+        $("#AddAlert").show();
         setTimeout(function () { $("#AddAlert").hide(); }, 3500);
     }
 
     function readImgShowModal(selectedImg){
         
         //document.getElementById("upload_image").value = "";
-        window.parent.$('#upload_image').val('');
+        $('#upload_image').val('');
 
         var reader = new FileReader();
         reader.onload = function (event) {
@@ -93,26 +93,26 @@ $(function () {
         document.getElementById('myImg').append(vmyImg);
     });
 
-    window.parent.$('#confirmCrop').click(function () {
+    $('#confirmCrop').click(function () {
         $image_crop.croppie('result', {
             type: 'canvas',
             size: 'viewport'
         }).then(function (response) {            
-            window.parent.$('#noteInfo').html('You can select another picture!');
+            $('#noteInfo').html('You can select another picture!');
 
             withJSpure(response);
 
-            window.parent.$('#nameMyImg').html(selectedFile.name);
+            $('#nameMyImg').html(selectedFile.name);
 
-            window.parent.$('#myImg').html('');
-            window.parent.$("<img>", {
+            $('#myImg').html('');
+            $("<img>", {
                 "src": response,
                 "class": 'img-thumbnail img-chosen',
                 "alt": 'Your image!',
                 "title": selectedFile.name
             }).appendTo("#myImg");            
 
-            window.parent.$('#uploadImageModal').modal('hide');
+            $('#uploadImageModal').modal('hide');
         })
     });
 
