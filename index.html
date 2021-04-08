@@ -26,65 +26,8 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-            <head>
-                <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-                    crossorigin="anonymous"></script>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+          <iframe src="./photo.html" height="300" width="300" title="Profile Picture" style="border:none;"></iframe>
 
-                <link rel="stylesheet" href="croppie/croppie.css">
-                <script src="croppie/croppie.js"></script>
-
-                <link rel="stylesheet" href="css/style.css">
-                <script src="js/script.js"></script>
-            </head>
-                    <div id="AddAlert" class="alert alert-warning alert-block" style="display:none;">
-                        <p id="AddAlertMessage"></p>
-                    </div>
-                            <div class="col-md-6">
-                                <div id="uploaded_pic">
-                                    <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
-                                        src="img/avatar_placeholder_temporary.png">
-                                </div>
-                                <input hidden type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
-                                <button id="btnGrab" class="btn btn-success">Select New</button>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                </div>
-
-
-                <!-- The Modal -->
-                <div class="modal" id="uploadImageModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Crop Image</h4>
-                                <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <div id="image_demo" style="width: 300px;"></div>
-                            </div>
-
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            <script>
-                $("#myImage").click(function() {
-                    $("input[id='upload_image']").click();
-            });
-            </script>
-            </html>
         </div>
       </div>
       

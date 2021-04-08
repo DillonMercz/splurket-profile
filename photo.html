@@ -17,7 +17,7 @@
     <script src="js/script.js"></script>
 </head>
 
-<body>
+<body id="myImage1" hidden="hidden">
     <div class="container text-center">
         <div id="AddAlert" class="alert alert-warning alert-block" style="display:none;">
             <p id="AddAlertMessage"></p>
@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <div id="uploaded_pic">
                         <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
-                            src="img/avatar_placeholder_temporary.png">
+                            src="">
                     </div>
                     <input hidden type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
                     <button id="btnGrab" class="btn btn-success">Select New</button>
@@ -67,4 +67,62 @@
         $("input[id='upload_image']").click();
 });
 </script>
+<script>
+            var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                getuserdata(data);
+            });
+        function getuserdata(data) {
+            email = data.encryptedstring;
+                var docRef = db.collection("users").doc(email);
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        data1 = doc.data()
+                        pro_pic = data1.pro_pic;
+                        if (data1.username == "" ){
+                            user_name = data1.email
+                        }
+                        if (data1.username != "") {
+                            user_name = data1.username;
+                        }
+                        document.getElementById("myImage").src = pro_pic;
+                        document.getElementById("myImage1").style.display = "block";
+
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                        console.log(doc.data())
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        }
+    </script>
 </html>
