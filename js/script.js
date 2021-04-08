@@ -67,7 +67,7 @@ $(function () {
             });
         }
         reader.readAsDataURL(selectedImg);
-        window.parent.$('#uploadImageModal').modal('show');
+        $('#uploadImageModal').modal('show');
     }
 
     $('#closeModal').click(function(){
