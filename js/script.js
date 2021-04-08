@@ -13,13 +13,13 @@ window.parent.$(function () {
             }
         });
 
-    window.parent.$('#btnGrab').click(function () {
-        window.parent.$('#upload_image').click();
+    $('#btnGrab').click(function () {
+        $('#upload_image').click();
     });
 
     var selectedFile;
 
-    window.parent.$("#upload_image").change(function (evt) {
+    $("#upload_image").change(function (evt) {
         if ((selectedFile = evt.target.files[0])) {
             validateImageSizeType(selectedFile);
         }
@@ -36,7 +36,7 @@ window.parent.$(function () {
             else
             {
                 showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                window.parent.$('#upload_image').val('');
+                $('#upload_image').val('');
             }
         };
 
@@ -56,7 +56,7 @@ window.parent.$(function () {
     function readImgShowModal(selectedImg){
         
         //document.getElementById("upload_image").value = "";
-        window.parent.$('#upload_image').val('');
+        $('#upload_image').val('');
 
         var reader = new FileReader();
         reader.onload = function (event) {
@@ -67,7 +67,7 @@ window.parent.$(function () {
             });
         }
         reader.readAsDataURL(selectedImg);
-        window.parent.window.parent.$('#uploadImageModal').modal('show');
+        window.parent.$('#uploadImageModal').modal('show');
     }
 
     window.parent.$('#closeModal').click(function(){
