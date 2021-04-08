@@ -267,7 +267,9 @@
                 discord_send = document.getElementById("discord").value;
                 company_send = document.getElementById("company").value;
                 phone_send = document.getElementById("phone").value;
-                db.collection('users').doc(email1).set({
+                db.collection('users')
+                .document(email1)
+                .update({
                         first_name: first_name_send,
                         last_name: last_name_send,
                         username: username_send,
