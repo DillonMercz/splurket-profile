@@ -1,4 +1,6 @@
 parent.$(function () {
+    console.log(window.parent)
+    console.log(window.[this])
     parent = this.window.parent;
     $image_crop = parent.$('#image_demo').croppie(
         {
