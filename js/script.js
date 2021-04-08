@@ -1,7 +1,6 @@
 $(function () {
-    console.log(window.parent)
-    console.log(window.this)
-    parent = this.window.parent;
+    parent = window.parent;
+    console.log(parent)
     $image_crop = $('#image_demo').croppie(
         {
             enableExif: true,
