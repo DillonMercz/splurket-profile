@@ -269,7 +269,7 @@
                 phone_send = document.getElementById("phone").value;
                 db.collection('users')
                 .document(email1)
-                .update(
+                .update({
                         first_name: first_name_send,
                         last_name: last_name_send,
                         username: username_send,
@@ -277,7 +277,7 @@
                         discord: discord_send,
                         phone_number: phone_send,
                         company: company_send,
-            )
+            })
           });
         }
   </script>
