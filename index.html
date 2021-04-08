@@ -40,7 +40,7 @@
                 <div class="col-xs-12">
                   <label class="cabinet center-block">
                     <figure>
-                      <img src="" class="avatar img-circle" alt="avatar" id="avatarpic" height="200px" width="200px" hidden="hidden">
+                      <img src="" class="avatar img-circle" alt="avatar" id="item-img-output" height="200px" width="200px" hidden="hidden">
                       <figcaption><i class="fa fa-camera"></i></figcaption>
                     </figure>
                     <input type="file" class="item-img file center-block" name="file_photo"/>
@@ -240,12 +240,12 @@
                         if (data1.username != "") {
                             user_name = data1.username;
                         }
-                        document.getElementById("avatarpic").src = pro_pic;
+                        document.getElementById("item-img-output").src = pro_pic;
                         //document.getElementById("avatarpic1").src = pro_pic;
                         document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         //document.getElementById("avatar").style.display = "block";
-                        document.getElementById("avatarpic").style.display = "block";
+                        document.getElementById("item-img-output").style.display = "block";
                         document.getElementById("first_name").value = first_name;
                         document.getElementById("last_name").value = last_name;
                         document.getElementById("username").value = username;
