@@ -11,6 +11,7 @@ $(".gambar").attr("src", "https://user.gadjian.com/static/images/personnel_boy.p
 									$('.upload-demo').addClass('ready');
 									$('#cropImagePop').modal('show');
 						            rawImg = e.target.result;
+						            console.log(rawImg)
 					            }
 					            reader.readAsDataURL(input.files[0]);
 					        }
@@ -45,6 +46,7 @@ $(".gambar").attr("src", "https://user.gadjian.com/static/images/personnel_boy.p
 								size: {width: 150, height: 200}
 							}).then(function (resp) {
 								$('#item-img-output').attr('src', resp);
+								console.log(resp)
 								$('#cropImagePop').modal('hide');
 							});
 						});
