@@ -32,55 +32,43 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-
-                  <div id="AddAlert" class="alert alert-warning alert-block" style="display:none;">
-                      <p id="AddAlertMessage"></p>
-                  </div>
-                      <div class="mt-3 row">
-                          <div class="col-md-6">
-                              <div id="uploaded_pic">
-                                  <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
-                                      src="img/avatar_placeholder_temporary.png">
-                              </div>
-                              <input hidden type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
-                              <button id="btnGrab" class="btn btn-success">Select New</button>
-                              </div>
-                              <br>
-                          </div>
-                      </div>
-              </div>
-
-
-              <!-- The Modal -->
-              <div class="modal" id="uploadImageModal">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                              <h4 class="modal-title">Crop Image</h4>
-                              <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-
-                          <!-- Modal body -->
-                          <div class="modal-body">
-                              <div id="image_demo" style="width: 300px;"></div>
-                          </div>
-
-                          <!-- Modal footer -->
-                          <div class="modal-footer">
-                              <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
-                          </div>
-
-                      </div>
-                  </div>
-              </div>
           <script>
-              $("#myImage").click(function() {
-                  $("input[id='upload_image']").click();
-          });
-          </script>
-          </html>
+            function includeHTML() {
+              var z, i, elmnt, file, xhttp;
+              /*loop through a collection of all HTML elements:*/
+              z = document.getElementsByTagName("*");
+              for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                  /*make an HTTP request using the attribute value as the file name:*/
+                  xhttp = new XMLHttpRequest();
+                  xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                      if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                      if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                      /*remove the attribute, and call this function once more:*/
+                      elmnt.removeAttribute("w3-include-html");
+                      includeHTML();
+                    }
+                  }      
+                  xhttp.open("GET", file, true);
+                  xhttp.send();
+                  /*exit the function:*/
+                  return;
+                }
+              }
+            };
+            </script>
+
+            <body>
+
+            <div w3-include-html="./photo.html"></div> 
+
+            <script>
+            includeHTML();
+            </script>
 
         </div>
       </div>
