@@ -42,4 +42,70 @@
         $("input[id='upload_image']").click();
 });
 </script>
+<script>
+    var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                getuserdata(data);
+            });
+        function getuserdata(data) {
+            email = data.encryptedstring;
+                var docRef = db.collection("users").doc(email);
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        data1 = doc.data()
+                        pro_pic = data1.pro_pic;
+                        first_name = data1.first_name;
+                        last_name = data1.last_name;
+                        username = data1.username;
+                        email = data1.email;
+                        discord = data1.discord;
+                        company = data1.company
+                        phone = data1.phone_number
+                        if (data1.username == "" ){
+                            user_name = data1.email
+                        }
+                        if (data1.username != "") {
+                            user_name = data1.username;
+                        }
+                        document.getElementById("myImage").src = pro_pic;
+                        document.getElementById("myImage").style.display = "block";
+
+
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                        console.log(doc.data())
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        }
+    </script>
 </html>
