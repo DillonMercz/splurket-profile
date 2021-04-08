@@ -23,7 +23,30 @@
       <div class="col-md-3">
         <div class="text-center">
           <iframe src="./photo.html" height="300" width="300" title="Profile Picture" style="border:none"></iframe>
+              <!-- The Modal -->
+        <div class="modal" id="uploadImageModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Crop Image</h4>
+                        <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div id="image_demo" style="width: 300px;"></div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         </div>
       </div>
       
@@ -191,12 +214,10 @@
                         if (data1.username != "") {
                             user_name = data1.username;
                         }
-                        document.getElementById("item-img-output").src = pro_pic;
                         //document.getElementById("avatarpic1").src = pro_pic;
                         document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         //document.getElementById("avatar").style.display = "block";
-                        document.getElementById("item-img-output").style.display = "block";
                         document.getElementById("first_name").value = first_name;
                         document.getElementById("last_name").value = last_name;
                         document.getElementById("username").value = username;
