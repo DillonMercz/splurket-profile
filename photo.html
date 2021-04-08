@@ -120,6 +120,7 @@
                 //should be a base64 string by now
                 getuserdata(data);
             });
+          });
         function getuserdata(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
