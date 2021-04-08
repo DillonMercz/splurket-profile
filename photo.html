@@ -67,169 +67,169 @@
 });
 </script>
 <script>
-    parent.$(function () {
-    parent = window.parent;
-    console.log(parent)
-    $image_crop = parent.$('#image_demo').croppie(
-        {
-            enableExif: true,
-            viewport: {
-                width: 150,
-                height: 150,
-                type: 'circle'
-            },
-            boundary: {
-                width: 300,
-                height: 300
+    $(function () {
+        parent = window.parent;
+        console.log(parent)
+        $image_crop = parent.$('#image_demo').croppie(
+            {
+                enableExif: true,
+                viewport: {
+                    width: 150,
+                    height: 150,
+                    type: 'circle'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                }
+            });
+
+        $('#btnGrab').click(function () {
+            $('#upload_image').click();
+        });
+
+        var selectedFile;
+
+        parent.$("#upload_image").change(function (evt) {
+            if ((selectedFile = evt.target.files[0])) {
+                validateImageSizeType(selectedFile);
             }
         });
 
-    $('#btnGrab').click(function () {
-        $('#upload_image').click();
-    });
+        function validateImageSizeType(selectedImage){
+            var _URL = window.URL || window.webkitURL;
+            var img = new Image();
 
-    var selectedFile;
+            img.onload = function() {
+                if(this.width >= 200 && this.height >= 200){
+                    readImgShowModal(selectedImage);
+                }
+                else
+                {
+                    showAlert("This image doesn't have the minimum size required: 200px / 200px");
+                    parent.$('#upload_image').val('');
+                }
+            };
 
-    parent.$("#upload_image").change(function (evt) {
-        if ((selectedFile = evt.target.files[0])) {
-            validateImageSizeType(selectedFile);
+            img.onerror = function() {
+                showAlert("File type not valid: " + selectedImage.type);
+            };
+            
+            img.src = _URL.createObjectURL(selectedImage);
         }
-    });
 
-    function validateImageSizeType(selectedImage){
-        var _URL = window.URL || window.webkitURL;
-        var img = new Image();
-
-        img.onload = function() {
-            if(this.width >= 200 && this.height >= 200){
-                readImgShowModal(selectedImage);
-            }
-            else
-            {
-                showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                parent.$('#upload_image').val('');
-            }
-        };
-
-        img.onerror = function() {
-            showAlert("File type not valid: " + selectedImage.type);
-        };
-        
-        img.src = _URL.createObjectURL(selectedImage);
-    }
-
-    function showAlert(msj) {
-        parent.$('#AddAlertMessage').html(msj);
-        parent.$("#AddAlert").show();
-        setTimeout(function () { parent.$("#AddAlert").hide(); }, 3500);
-    }
-
-    function readImgShowModal(selectedImg){
-        
-        //document.getElementById("upload_image").value = "";
-        parent.$('#upload_image').val('');
-
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            $image_crop.croppie('bind', {
-                url: event.target.result
-            }).then(function () {
-                console.log('Bind complete!');
-            });
+        function showAlert(msj) {
+            parent.$('#AddAlertMessage').html(msj);
+            parent.$("#AddAlert").show();
+            setTimeout(function () { parent.$("#AddAlert").hide(); }, 3500);
         }
-        reader.readAsDataURL(selectedImg);
-        parent.$('#uploadImageModal').modal('show');
-    }
 
-    parent.$('#closeModal').click(function(){
-        var vmyImage = document.getElementById("myImage");
-        var vmyImg = new Image();
+        function readImgShowModal(selectedImg){
+            
+            //document.getElementById("upload_image").value = "";
+            parent.$('#upload_image').val('');
 
-        vmyImage.title = "Your image!";
-        vmyImg.title = "Your image!";
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                $image_crop.croppie('bind', {
+                    url: event.target.result
+                }).then(function () {
+                    console.log('Bind complete!');
+                });
+            }
+            reader.readAsDataURL(selectedImg);
+            parent.$('#uploadImageModal').modal('show');
+        }
 
-        var nameImage = document.getElementById("nameMyImage");
-        var nameImg = document.getElementById("nameMyImg");
+        parent.$('#closeModal').click(function(){
+            var vmyImage = document.getElementById("myImage");
+            var vmyImg = new Image();
 
-        nameImage.innerHTML = "avatar";
-        nameImg.innerHTML = "avatar";
-        
-        vmyImage.src = "img/avatar-default-icon.png";
-        vmyImg.src = "img/avatar_placeholder_temporary.png";
+            vmyImage.title = "Your image!";
+            vmyImg.title = "Your image!";
 
-        vmyImg.className = "img-thumbnail img-chosen";
-        vmyImg.alt = "Your image!";
+            var nameImage = document.getElementById("nameMyImage");
+            var nameImg = document.getElementById("nameMyImg");
 
-        document.getElementById('myImg').innerHTML = "";
-        document.getElementById('myImg').append(vmyImg);
-    });
+            nameImage.innerHTML = "avatar";
+            nameImg.innerHTML = "avatar";
+            
+            vmyImage.src = "img/avatar-default-icon.png";
+            vmyImg.src = "img/avatar_placeholder_temporary.png";
 
-    parent.$('#confirmCrop').click(function () {
-        $image_crop.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        }).then(function (response) {            
-            parent.$('#noteInfo').html('You can select another picture!');
+            vmyImg.className = "img-thumbnail img-chosen";
+            vmyImg.alt = "Your image!";
 
-            withJSpure(response);
+            document.getElementById('myImg').innerHTML = "";
+            document.getElementById('myImg').append(vmyImg);
+        });
 
-            parent.$('#nameMyImg').html(selectedFile.name);
+        parent.$('#confirmCrop').click(function () {
+            $image_crop.croppie('result', {
+                type: 'canvas',
+                size: 'viewport'
+            }).then(function (response) {            
+                parent.$('#noteInfo').html('You can select another picture!');
 
-            parent.$('#myImg').html('');
-            parent.$("<img>", {
-                "src": response,
-                "class": 'img-thumbnail img-chosen',
-                "alt": 'Your image!',
-                "title": selectedFile.name
-            }).appendTo("#myImg");            
+                withJSpure(response);
 
-            parent.$('#uploadImageModal').modal('hide');
-        })
-    });
+                parent.$('#nameMyImg').html(selectedFile.name);
 
-    function withJSpure(resp) {
-        var imgtag = document.getElementById("myImage");
-        imgtag.title = selectedFile.name;
+                parent.$('#myImg').html('');
+                parent.$("<img>", {
+                    "src": response,
+                    "class": 'img-thumbnail img-chosen',
+                    "alt": 'Your image!',
+                    "title": selectedFile.name
+                }).appendTo("#myImg");            
 
-        var nameImg = document.getElementById("nameMyImage");
-        
-        imgtag.src = resp;
-    }
+                parent.$('#uploadImageModal').modal('hide');
+            })
+        });
 
-    /*     parent.$('#upload_image').change(function (evnt) {
-            parent.$('#noteInfo').html('You can select another picture!');
-        
-            onChangeUploadJSpure(evnt);
-        
+        function withJSpure(resp) {
+            var imgtag = document.getElementById("myImage");
+            imgtag.title = selectedFile.name;
+
+            var nameImg = document.getElementById("nameMyImage");
+            
+            imgtag.src = resp;
+        }
+
+        /*     parent.$('#upload_image').change(function (evnt) {
+                parent.$('#noteInfo').html('You can select another picture!');
+            
+                onChangeUploadJSpure(evnt);
+            
+                var selectedFile = event.target.files[0];
+                var reader = new FileReader();
+            
+                parent.$('#myImg').attr('title', selectedFile.name);
+                parent.$('#nameMyImg').html(selectedFile.name);
+            
+                reader.onload = function (event) {
+                    parent.$("#myImg").attr("src", event.target.result);
+                };
+            
+                reader.readAsDataURL(selectedFile);
+            }); */
+
+        /* function onChangeUploadJSpure(evt) {
             var selectedFile = event.target.files[0];
             var reader = new FileReader();
-        
-            parent.$('#myImg').attr('title', selectedFile.name);
-            parent.$('#nameMyImg').html(selectedFile.name);
-        
+
+            var imgtag = document.getElementById("myImage");
+            imgtag.title = selectedFile.name;
+
+            var nameImg = document.getElementById("nameMyImage");
+            nameImg.innerHTML = selectedFile.name;
+
             reader.onload = function (event) {
-                parent.$("#myImg").attr("src", event.target.result);
+                imgtag.src = event.target.result;
             };
-        
+
             reader.readAsDataURL(selectedFile);
-        }); */
-
-    /* function onChangeUploadJSpure(evt) {
-        var selectedFile = event.target.files[0];
-        var reader = new FileReader();
-
-        var imgtag = document.getElementById("myImage");
-        imgtag.title = selectedFile.name;
-
-        var nameImg = document.getElementById("nameMyImage");
-        nameImg.innerHTML = selectedFile.name;
-
-        reader.onload = function (event) {
-            imgtag.src = event.target.result;
-        };
-
-        reader.readAsDataURL(selectedFile);
-    } */
-});
+        } */
+    });
 </script>
 </html>
