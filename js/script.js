@@ -1,5 +1,5 @@
 parent.$(function () {
-    parent = window.parent(this);
+    parent = this.window.parent;
     $image_crop = parent.$('#image_demo').croppie(
         {
             enableExif: true,
