@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -15,10 +15,6 @@
 
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -38,121 +34,37 @@
                     <br>
                 </div>
             </div>
-             <!-- The Modal -->
-          <div class="modal" id="uploadImageModal">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                          <h4 class="modal-title">Crop Image</h4>
-                          <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                          <div id="image_demo" style="width: 300px;"></div>
-                      </div>
-
-                      <!-- Modal footer -->
-                      <div class="modal-footer">
-                          <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-        </div>
-      </div>
     </div>
 
+
+    <!-- The Modal -->
+    <div class="modal" id="uploadImageModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Crop Image</h4>
+                    <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div id="image_demo" style="width: 300px;"></div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     $("#myImage").click(function() {
         $("input[id='upload_image']").click();
 });
 </script>
-<script>
-    var name, email, photoUrl, uid, emailVerified;
-
-        var config = {
-            apiKey: "AIzaSyC-BUGGSsvUX8z4W1LcsJzS59yrL4__EsE",
-            authDomain: "splurket-66df1.firebaseapp.com",
-            databaseURL: "https://splurket-66df1-default-rtdb.firebaseio.com",
-            projectId: "splurket-66df1",
-            storageBucket: "splurket-66df1.appspot.com",
-            messagingSenderId: "286706779903",
-            appId: "1:286706779903:web:fd91c29319f9804e192eca",
-            measurementId: "G-QWQ2M658KL"
-          };
-        firebase.initializeApp(config);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true }); 
-        firebase.auth().onAuthStateChanged(function(user) {
-            var user = firebase.auth().currentUser;
-            //splurket@gmail.com
-            var email1 = user.email;
-            
-            /*var email = getParameterByName('user'); 
-            console.log(email)*/
-            //still splurket
-            
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json, /;q=0.5");
-
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                getuserdata(data);
-            });
-          });
-        function getuserdata(data) {
-            email = data.encryptedstring;
-                var docRef = db.collection("users").doc(email);
-                docRef.get().then((doc) => {
-                    if (doc.exists) {
-                        data1 = doc.data()
-                        pro_pic = data1.pro_pic;
-                        first_name = data1.first_name;
-                        last_name = data1.last_name;
-                        username = data1.username;
-                        email = data1.email;
-                        discord = data1.discord;
-                        company = data1.company
-                        phone = data1.phone_number
-                        if (data1.username == "" ){
-                            user_name = data1.email
-                        }
-                        if (data1.username != "") {
-                            user_name = data1.username;
-                        }
-                        document.getElementById("myImage").src = pro_pic;
-                        document.getElementById("myImage").style.display = "block";
-
-
-                    } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No such document!");
-                        console.log(doc.data())
-                    }
-                }).catch((error) => {
-                    console.log("Error getting document:", error);
-                });
-        }
-    </script>
 </html>

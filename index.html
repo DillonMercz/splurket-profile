@@ -8,18 +8,15 @@
   <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <style>/* CSS used here will be applied after bootstrap.css */</style>
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="croppie/croppie.css">
-  <script src="croppie/croppie.js"></script>
 
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">  
+  
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <style>/* CSS used here will be applied after bootstrap.css */</style>
 </head>
 <body>
   <div class="container">
@@ -29,7 +26,7 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <iframe src="./photo.html" height="300" width="300" title="Profile Picture" style="border:none"></iframe>
+          <iframe src="./photo.html" height="300" width="300" title="Profile Picture"></iframe>
 
         </div>
       </div>
@@ -198,10 +195,12 @@
                         if (data1.username != "") {
                             user_name = data1.username;
                         }
+                        document.getElementById("item-img-output").src = pro_pic;
                         //document.getElementById("avatarpic1").src = pro_pic;
                         document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         //document.getElementById("avatar").style.display = "block";
+                        document.getElementById("item-img-output").style.display = "block";
                         document.getElementById("first_name").value = first_name;
                         document.getElementById("last_name").value = last_name;
                         document.getElementById("username").value = username;
