@@ -62,12 +62,12 @@
     </div>
 </body>
 <script>
-    $("#myImage").click(function() {
-        $("input[id='upload_image']").click();
+    window.parent.$("#myImage").click(function() {
+        window.parent.$("input[id='upload_image']").click();
 });
 </script>
 <script>
-    $(function () {
+    window.parent.$(function () {
         $image_crop = window.parent.$('#image_demo').croppie(
             {
                 enableExif: true,
@@ -88,7 +88,7 @@
 
         var selectedFile;
 
-        $("#upload_image").change(function (evt) {
+        window.parent.$("#upload_image").change(function (evt) {
             if ((selectedFile = evt.target.files[0])) {
                 validateImageSizeType(selectedFile);
             }
@@ -105,7 +105,7 @@
                 else
                 {
                     showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                    $('#upload_image').val('');
+                    window.parent.$('#upload_image').val('');
                 }
             };
 
@@ -125,7 +125,7 @@
         function readImgShowModal(selectedImg){
             
             //document.getElementById("upload_image").value = "";
-            $('#upload_image').val('');
+            window.parent.$('#upload_image').val('');
 
             var reader = new FileReader();
             reader.onload = function (event) {
@@ -167,14 +167,14 @@
                 type: 'canvas',
                 size: 'viewport'
             }).then(function (response) {            
-                $('#noteInfo').html('You can select another picture!');
+                window.parent.$('#noteInfo').html('You can select another picture!');
 
                 withJSpure(response);
 
-                $('#nameMyImg').html(selectedFile.name);
+                window.parent.$('#nameMyImg').html(selectedFile.name);
 
-                $('#myImg').html('');
-                $("<img>", {
+                window.parent.$('#myImg').html('');
+                window.parent.$("<img>", {
                     "src": response,
                     "class": 'img-thumbnail img-chosen',
                     "alt": 'Your image!',
@@ -194,19 +194,19 @@
             imgtag.src = resp;
         }
 
-        /*     $('#upload_image').change(function (evnt) {
-                $('#noteInfo').html('You can select another picture!');
+        /*     window.parent.$('#upload_image').change(function (evnt) {
+                window.parent.$('#noteInfo').html('You can select another picture!');
             
                 onChangeUploadJSpure(evnt);
             
                 var selectedFile = event.target.files[0];
                 var reader = new FileReader();
             
-                $('#myImg').attr('title', selectedFile.name);
-                $('#nameMyImg').html(selectedFile.name);
+                window.parent.$('#myImg').attr('title', selectedFile.name);
+                window.parent.$('#nameMyImg').html(selectedFile.name);
             
                 reader.onload = function (event) {
-                    $("#myImg").attr("src", event.target.result);
+                    window.parent.$("#myImg").attr("src", event.target.result);
                 };
             
                 reader.readAsDataURL(selectedFile);
