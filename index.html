@@ -91,7 +91,7 @@
           </script>
           <script>
               $(function () {
-                  $image_crop = window.parent.$('#image_demo').croppie(
+                  $image_crop = $('#image_demo').croppie(
                       {
                           enableExif: true,
                           viewport: {
@@ -140,9 +140,9 @@
                   }
 
                   function showAlert(msj) {
-                      window.parent.$('#AddAlertMessage').html(msj);
-                      window.parent.$("#AddAlert").show();
-                      setTimeout(function () { window.parent.$("#AddAlert").hide(); }, 3500);
+                      $('#AddAlertMessage').html(msj);
+                      $("#AddAlert").show();
+                      setTimeout(function () { $("#AddAlert").hide(); }, 3500);
                   }
 
                   function readImgShowModal(selectedImg){
@@ -159,10 +159,10 @@
                           });
                       }
                       reader.readAsDataURL(selectedImg);
-                      window.parent.$('#uploadImageModal').modal('show');
+                      $('#uploadImageModal').modal('show');
                   }
 
-                  window.parent.$('#closeModal').click(function(){
+                  $('#closeModal').click(function(){
                       var vmyImage = document.getElementById("myImage");
                       var vmyImg = new Image();
 
@@ -185,7 +185,7 @@
                       document.getElementById('myImg').append(vmyImg);
                   });
 
-                  window.parent.$('#confirmCrop').click(function () {
+                  $('#confirmCrop').click(function () {
                       $image_crop.croppie('result', {
                           type: 'canvas',
                           size: 'viewport'
@@ -204,7 +204,7 @@
                               "title": selectedFile.name
                           }).appendTo("#myImg");            
 
-                          window.parent.$('#uploadImageModal').modal('hide');
+                          $('#uploadImageModal').modal('hide');
                       })
                   });
 
