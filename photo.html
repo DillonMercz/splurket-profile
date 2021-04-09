@@ -117,9 +117,9 @@
         }
 
         function showAlert(msj) {
-            $('#AddAlertMessage').html(msj);
-            $("#AddAlert").show();
-            setTimeout(function () { $("#AddAlert").hide(); }, 3500);
+            window.parent.$('#AddAlertMessage').html(msj);
+            window.parent.$("#AddAlert").show();
+            setTimeout(function () { window.parent.$("#AddAlert").hide(); }, 3500);
         }
 
         function readImgShowModal(selectedImg){
@@ -139,7 +139,7 @@
             window.parent.$('#uploadImageModal').modal('show');
         }
 
-        $('#closeModal').click(function(){
+        window.parent.$('#closeModal').click(function(){
             var vmyImage = document.getElementById("myImage");
             var vmyImg = new Image();
 
@@ -162,7 +162,7 @@
             document.getElementById('myImg').append(vmyImg);
         });
 
-        $('#confirmCrop').click(function () {
+        window.parent.$('#confirmCrop').click(function () {
             $image_crop.croppie('result', {
                 type: 'canvas',
                 size: 'viewport'
@@ -181,7 +181,7 @@
                     "title": selectedFile.name
                 }).appendTo("#myImg");            
 
-                $('#uploadImageModal').modal('hide');
+                window.parent.$('#uploadImageModal').modal('hide');
             })
         });
 
