@@ -1,51 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen - Crop Image with Croppie + Modal</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://foliotek.github.io/Croppie/croppie.css'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="croppie/croppie.css">
+    <script src="croppie/croppie.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<div class="container">
-    <div class="row">
-                                <div class="col-xs-12">
-                                    <label class="cabinet center-block">
-                                        <figure>
-                                            <img src="" class="gambar img-responsive img-thumbnail" id="item-img-output" />
-                                          <figcaption><i class="fa fa-camera"></i></figcaption>
-                                    </figure>
-                                        <input type="file" class="item-img file center-block" name="file_photo"/>
-                                    </label>
-                                </div>
-                            </div>
-</div>
+    <div class="container text-center">
+        <div id="AddAlert" class="alert alert-warning alert-block" style="display:none;">
+            <p id="AddAlertMessage"></p>
+        </div>
+            <div class="mt-3 row">
+                <div class="col-md-6">
+                    <div id="uploaded_pic">
+                        <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
+                            src="img/avatar_placeholder_temporary.png">
+                    </div>
+                    <input hidden type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
+                    <button id="btnGrab" class="btn btn-success">Select New</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+    </div>
 
-<div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title" id="myModalLabel">
-                                <?=multiLanguage( "Edit Foto" , "Edit Photo" )?></h4>
-                            </div>
-                            <div class="modal-body">
-                            <div id="upload-demo" class="center-block"></div>
-                      </div>
-                             <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
-      </div>
-                            </div>
-                          </div>
-                        </div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-<script src='https://foliotek.github.io/Croppie/croppie.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script><script  src="./script.js"></script>
 
+    <!-- The Modal -->
+    <div class="modal" id="uploadImageModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Crop Image</h4>
+                    <button id="closeModal" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div id="image_demo" style="width: 300px;"></div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="confirmCrop" type="button" class="btn btn-success">Confirm!</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    $("#myImage").click(function() {
+        $("input[id='upload_image']").click();
+});
+</script>
+<script>
+    $(function () {
+        $image_crop = window.parent.$('#image_demo').croppie(
+            {
+                enableExif: true,
+                viewport: {
+                    width: 150,
+                    height: 150,
+                    type: 'circle'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                }
+            });
+
+        $('#btnGrab').click(function () {
+            $('#upload_image').click();
+        });
+
+        var selectedFile;
+
+        $("#upload_image").change(function (evt) {
+            if ((selectedFile = evt.target.files[0])) {
+                validateImageSizeType(selectedFile);
+            }
+        });
+
+        function validateImageSizeType(selectedImage){
+            var _URL = window.URL || window.webkitURL;
+            var img = new Image();
+
+            img.onload = function() {
+                if(this.width >= 200 && this.height >= 200){
+                    readImgShowModal(selectedImage);
+                }
+                else
+                {
+                    showAlert("This image doesn't have the minimum size required: 200px / 200px");
+                    $('#upload_image').val('');
+                }
+            };
+
+            img.onerror = function() {
+                showAlert("File type not valid: " + selectedImage.type);
+            };
+            
+            img.src = _URL.createObjectURL(selectedImage);
+        }
+
+        function showAlert(msj) {
+            window.parent.$('#AddAlertMessage').html(msj);
+            window.parent.$("#AddAlert").show();
+            setTimeout(function () { window.parent.$("#AddAlert").hide(); }, 3500);
+        }
+
+        function readImgShowModal(selectedImg){
+            
+            //document.getElementById("upload_image").value = "";
+            $('#upload_image').val('');
+
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                $image_crop.croppie('bind', {
+                    url: event.target.result
+                }).then(function () {
+                    console.log('Bind complete!');
+                });
+            }
+            reader.readAsDataURL(selectedImg);
+            window.parent.$('#uploadImageModal').modal('show');
+        }
+
+        window.parent.$('#closeModal').click(function(){
+            var vmyImage = document.getElementById("myImage");
+            var vmyImg = new Image();
+
+            vmyImage.title = "Your image!";
+            vmyImg.title = "Your image!";
+
+            var nameImage = document.getElementById("nameMyImage");
+            var nameImg = document.getElementById("nameMyImg");
+
+            nameImage.innerHTML = "avatar";
+            nameImg.innerHTML = "avatar";
+            
+            vmyImage.src = "img/avatar-default-icon.png";
+            vmyImg.src = "img/avatar_placeholder_temporary.png";
+
+            vmyImg.className = "img-thumbnail img-chosen";
+            vmyImg.alt = "Your image!";
+
+            document.getElementById('myImg').innerHTML = "";
+            document.getElementById('myImg').append(vmyImg);
+        });
+
+        window.parent.$('#confirmCrop').click(function () {
+            $image_crop.croppie('result', {
+                type: 'canvas',
+                size: 'viewport'
+            }).then(function (response) {            
+                $('#noteInfo').html('You can select another picture!');
+
+                withJSpure(response);
+
+                $('#nameMyImg').html(selectedFile.name);
+
+                $('#myImg').html('');
+                $("<img>", {
+                    "src": response,
+                    "class": 'img-thumbnail img-chosen',
+                    "alt": 'Your image!',
+                    "title": selectedFile.name
+                }).appendTo("#myImg");            
+
+                window.parent.$('#uploadImageModal').modal('hide');
+            })
+        });
+
+        function withJSpure(resp) {
+            var imgtag = document.getElementById("myImage");
+            imgtag.title = selectedFile.name;
+
+            var nameImg = document.getElementById("nameMyImage");
+            
+            imgtag.src = resp;
+        }
+
+        /*     $('#upload_image').change(function (evnt) {
+                $('#noteInfo').html('You can select another picture!');
+            
+                onChangeUploadJSpure(evnt);
+            
+                var selectedFile = event.target.files[0];
+                var reader = new FileReader();
+            
+                $('#myImg').attr('title', selectedFile.name);
+                $('#nameMyImg').html(selectedFile.name);
+            
+                reader.onload = function (event) {
+                    $("#myImg").attr("src", event.target.result);
+                };
+            
+                reader.readAsDataURL(selectedFile);
+            }); */
+
+        /* function onChangeUploadJSpure(evt) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+
+            var imgtag = document.getElementById("myImage");
+            imgtag.title = selectedFile.name;
+
+            var nameImg = document.getElementById("nameMyImage");
+            nameImg.innerHTML = selectedFile.name;
+
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+
+            reader.readAsDataURL(selectedFile);
+        } */
+    });
+</script>
 </html>
