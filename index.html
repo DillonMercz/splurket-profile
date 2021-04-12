@@ -501,6 +501,7 @@
           });
         }
       function update_pic(source){
+        document.write(source)
         var requestOptions = {
             method: 'POST',
             headers: {
@@ -517,7 +518,7 @@
               return response.json();
           })
           .then(function (data) {
-            document.write(JSON.stringify(data, source));
+            //document.write(JSON.stringify(data, source));
       })
       }
 
