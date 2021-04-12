@@ -501,14 +501,14 @@
           });
         }
       function update_pic(source){
-        document.write(source)
+        var source1 = source;
         var requestOptions = {
             method: 'POST',
             headers: {
               "Authorization": 'Client-ID c83b7110028cc7c',
             },
             form: {
-              "image": source,
+              "image": source1,
               "type": "base64"
             }
           }
@@ -518,7 +518,8 @@
               return response.json();
           })
           .then(function (data) {
-            //document.write(JSON.stringify(data, source));
+            document.write(JSON.stringify(data));
+            document.write(JSON.stringify(form));
       })
       }
 
