@@ -330,7 +330,7 @@
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
-    var img = document.querySelector("#img_div img"),
+    var img = document.querySelector("#myImage"),
       observer = new MutationObserver((changes) => {
         changes.forEach(change => {
             if(change.attributeName.includes('src')){
