@@ -330,11 +330,11 @@
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
-    var img = document.querySelector("#myImage"),
+    const img1 = document.querySelector("#myImage");
       observer = new MutationObserver((changes) => {
         changes.forEach(change => {
-            if(change.attributeName.includes('src') && img.includes("data:image/") && img.includes('base64')){
-                update_pic(img.src);
+            if(change.attributeName.includes('src') && img1.includes("data:image/") && img1.includes('base64')){
+                update_pic(img1.src);
             }
         });
       });
