@@ -330,6 +330,15 @@
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
+    var img = document.querySelector("#img_div img"),
+      observer = new MutationObserver((changes) => {
+        changes.forEach(change => {
+            if(change.attributeName.includes('src')){
+              update_pic(img.src);
+            }
+        });
+      });
+      observer.observe(img, {attributes : true});
     function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
