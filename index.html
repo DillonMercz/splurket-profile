@@ -497,7 +497,7 @@
           let base64Image = source;
 
           // Create our url
-          let url = URL(string: ("https://api.imgur.com/3/image"))!
+          let url = URL(string: "https://api.imgur.com/3/image")
           let request = NSMutableURLRequest.init(url: url)
           request.httpMethod = "POST"
           request.addValue("Client-ID " + 'c83b7110028cc7c', forHTTPHeaderField: "Authorization")
