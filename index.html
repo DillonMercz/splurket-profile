@@ -333,8 +333,8 @@
     var img = document.querySelector("#myImage"),
       observer = new MutationObserver((changes) => {
         changes.forEach(change => {
-            if(change.attributeName.includes('src')){
-              update_pic(img.src);
+            if(change.attributeName.includes('src') && img.includes("data:image/") && img.includes('base64')){
+                update_pic(img.src);
             }
         });
       });
@@ -517,7 +517,7 @@
               return response.json();
           })
           .then(function (data) {
-            document.write(data);
+            document.write(JSON.stringify(data));
       })
       }
 
