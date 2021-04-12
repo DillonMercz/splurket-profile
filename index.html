@@ -501,28 +501,41 @@
           });
         }
       function update_pic(source){
-        var source1 = source;
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-              "Authorization": 'Client-ID c83b7110028cc7c',
-            },
-            form: {
-              "image": source1,
-              "type": "base64"
-            }
-          }
+        var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
 
-        fetch("https://api.imgur.com/3/image", requestOptions)
-          .then(function (response) {
-              return response.json();
-          })
-          .then(function (data) {
-            document.write(JSON.stringify(data));
-            document.write(JSON.stringify(form));
-      })
-      }
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
 
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                email1 = data.encryptedstring;
+                db.collection('users').doc(email1).update({
+                        pro_pic: source,
+            })
+          });
+        }
   </script>
 
 <script src="croppie/croppie.js"></script>
