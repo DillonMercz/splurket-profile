@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="css/style.css">
   <style>/* CSS used here will be applied after bootstrap.css */</style>
 </head>
-<center><body>
+<body>
   <div class="container">
     <center><h1>Edit Your Splurket Profile</h1></center>
   	<hr>
@@ -37,13 +37,13 @@
           </div>
               <div class="mt-3 row">
                   <div class="col-md-6">
-                      <div id="uploaded_pic">
+                      <center><div id="uploaded_pic">
                           <img id="myImage" class="img-thumbnail img-chosen" alt="Your image!"
                               src="img/avatar_placeholder_temporary.png">
                       </div>
                       <input hidden="hidden" type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
                       <button id="btnGrab" class="btn btn-success">Select New</button>
-                      </div>
+                      </div></center>
                       <br>
                   </div>
               </div>
@@ -248,7 +248,7 @@
       </div>
       
       <!-- edit form column -->
-      <div class="col-md-9 personal-info">
+     <center><div class="col-md-9 personal-info">
         <!--<div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
@@ -322,7 +322,7 @@
         </form>
       </div>
   </div>
-</div>
+</div></center>
 <hr>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
@@ -492,4 +492,4 @@
   </script>
 <script src="croppie/croppie.js"></script>
 
-</body></center></html>
+</body></html>
