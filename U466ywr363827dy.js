@@ -8,30 +8,6 @@ var reviews=[];
 var skills=[];
 var user;
 var email1;
- var name, email, photoUrl, uid, emailVerified;
-
-var config = {
-    apiKey: "AIzaSyC-BUGGSsvUX8z4W1LcsJzS59yrL4__EsE",
-    authDomain: "splurket-66df1.firebaseapp.com",
-    databaseURL: "https://splurket-66df1-default-rtdb.firebaseio.com",
-    projectId: "splurket-66df1",
-    storageBucket: "splurket-66df1.appspot.com",
-    messagingSenderId: "286706779903",
-    appId: "1:286706779903:web:fd91c29319f9804e192eca",
-    measurementId: "G-QWQ2M658KL"
-  };
-firebase.initializeApp(config);
-const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true }); 
-
-function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
 var userfile= getParameterByName('user');
 title=document.createElement('Title');
 title.innerText=userfile +"'s Profile | Splurket"
