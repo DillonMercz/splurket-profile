@@ -360,7 +360,6 @@
             measurementId: "G-QWQ2M658KL"
           };
         firebase.initializeApp(config);
-        const db = firebase.firestore();
         db.settings({ timestampsInSnapshots: true }); 
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
@@ -395,7 +394,7 @@
               })
               .then(function (data) {
                 //should be a base64 string by now
-                getuserdata(data);
+                getuserdata1(data);
             });
           } else {
             console.log('fuck')
@@ -403,7 +402,7 @@
             document.getElementById("login").style.display = "block";
           }
         });
-        function getuserdata(data) {
+        function getuserdata1(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
                 docRef.get().then((doc) => {
