@@ -153,390 +153,9 @@
           </div>
       </div>
   </body>
-  <script>
-      $("#myImage").click(function() {
-          $("input[id='upload_image']").click();
-  });
-  </script>
-  <script>
-      $(function () {
-          $image_crop = $('#image_demo').croppie(
-              {
-                  enableExif: true,
-                  viewport: {
-                      width: 150,
-                      height: 150,
-                      type: 'circle'
-                  },
-                  boundary: {
-                      width: 300,
-                      height: 300
-                  }
-              });
-
-          $('#btnGrab').click(function () {
-              $('#upload_image').click();
-          });
-
-          var selectedFile;
-
-          $("#upload_image").change(function (evt) {
-              if ((selectedFile = evt.target.files[0])) {
-                  validateImageSizeType(selectedFile);
-              }
-          });
-
-          function validateImageSizeType(selectedImage){
-              var _URL = window.URL || window.webkitURL;
-              var img = new Image();
-
-              img.onload = function() {
-                  if(this.width >= 200 && this.height >= 200){
-                      readImgShowModal(selectedImage);
-                  }
-                  else
-                  {
-                      showAlert("This image doesn't have the minimum size required: 200px / 200px");
-                      $('#upload_image').val('');
-                  }
-              };
-
-              img.onerror = function() {
-                  showAlert("File type not valid: " + selectedImage.type);
-              };
-              
-              img.src = _URL.createObjectURL(selectedImage);
-          }
-
-          function showAlert(msj) {
-              $('#AddAlertMessage').html(msj);
-              $("#AddAlert").show();
-              setTimeout(function () { $("#AddAlert").hide(); }, 3500);
-          }
-
-          function readImgShowModal(selectedImg){
-              
-              //document.getElementById("upload_image").value = "";
-              $('#upload_image').val('');
-
-              var reader = new FileReader();
-              reader.onload = function (event) {
-                  $image_crop.croppie('bind', {
-                      url: event.target.result
-                  }).then(function () {
-                      console.log('Bind complete!');
-                  });
-              }
-              reader.readAsDataURL(selectedImg);
-              $('#uploadImageModal').modal('show');
-          }
-
-          $('#closeModal').click(function(){
-              var vmyImage = document.getElementById("myImage");
-              var vmyImg = new Image();
-
-              vmyImage.title = "Your image!";
-              vmyImg.title = "Your image!";
-
-              var nameImage = document.getElementById("nameMyImage");
-              var nameImg = document.getElementById("nameMyImg");
-
-              nameImage.innerHTML = "avatar";
-              nameImg.innerHTML = "avatar";
-              
-              vmyImage.src = "img/avatar-default-icon.png";
-              vmyImg.src = "img/avatar_placeholder_temporary.png";
-
-              vmyImg.className = "img-thumbnail img-chosen";
-              vmyImg.alt = "Your image!";
-
-              document.getElementById('myImg').innerHTML = "";
-              document.getElementById('myImg').append(vmyImg);
-          });
-
-          $('#confirmCrop').click(function () {
-              $image_crop.croppie('result', {
-                  type: 'canvas',
-                  size: 'viewport'
-              }).then(function (response) {            
-                  $('#noteInfo').html('You can select another picture!');
-
-                  withJSpure(response);
-
-                  $('#nameMyImg').html(selectedFile.name);
-
-                  $('#myImg').html('');
-                  $("<img>", {
-                      "src": response,
-                      "class": 'img-thumbnail img-chosen',
-                      "alt": 'Your image!',
-                      "title": selectedFile.name
-                  }).appendTo("#myImg");            
-
-                  $('#uploadImageModal').modal('hide');
-              })
-          });
-
-          function withJSpure(resp) {
-              var imgtag = document.getElementById("myImage");
-              imgtag.title = selectedFile.name;
-
-              var nameImg = document.getElementById("nameMyImage");
-              
-              imgtag.src = resp;
-          }
-
-          /*     $('#upload_image').change(function (evnt) {
-                  $('#noteInfo').html('You can select another picture!');
-              
-                  onChangeUploadJSpure(evnt);
-              
-                  var selectedFile = event.target.files[0];
-                  var reader = new FileReader();
-              
-                  $('#myImg').attr('title', selectedFile.name);
-                  $('#nameMyImg').html(selectedFile.name);
-              
-                  reader.onload = function (event) {
-                      $("#myImg").attr("src", event.target.result);
-                  };
-              
-                  reader.readAsDataURL(selectedFile);
-              }); */
-
-          /* function onChangeUploadJSpure(evt) {
-              var selectedFile = event.target.files[0];
-              var reader = new FileReader();
-
-              var imgtag = document.getElementById("myImage");
-              imgtag.title = selectedFile.name;
-
-              var nameImg = document.getElementById("nameMyImage");
-              nameImg.innerHTML = selectedFile.name;
-
-              reader.onload = function (event) {
-                  imgtag.src = event.target.result;
-              };
-
-              reader.readAsDataURL(selectedFile);
-          } */
-      });
-  </script>
-        </div>
-      </div>
-      
-      
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script>
-    const img1 = document.querySelector("#myImage");
-      observer = new MutationObserver((changes) => {
-        changes.forEach(change => {
-            if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
-                update_pic(img1.src);
-            }
-        });
-      });
-      observer.observe(img1, {attributes : true});
-    function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-        var name, email, photoUrl, uid, emailVerified;
-
-        var config = {
-            apiKey: "AIzaSyC-BUGGSsvUX8z4W1LcsJzS59yrL4__EsE",
-            authDomain: "splurket-66df1.firebaseapp.com",
-            databaseURL: "https://splurket-66df1-default-rtdb.firebaseio.com",
-            projectId: "splurket-66df1",
-            storageBucket: "splurket-66df1.appspot.com",
-            messagingSenderId: "286706779903",
-            appId: "1:286706779903:web:fd91c29319f9804e192eca",
-            measurementId: "G-QWQ2M658KL"
-          };
-        firebase.initializeApp(config);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true }); 
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            var user = firebase.auth().currentUser;
-            //splurket@gmail.com
-            var email1 = user.email;
-            
-            /*var email = getParameterByName('user'); 
-            console.log(email)*/
-            //still splurket
-            
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Access-Control-Allow-Origin", "*")
-            myHeaders.append("Accept", "application/json, /;q=0.5");
-
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                getuserdata(data);
-            });
-          } else {
-            console.log('fuck')
-            document.getElementById("avatar").style.display = "none";
-            document.getElementById("login").style.display = "block";
-          }
-        });
-        function getuserdata(data) {
-            email = data.encryptedstring;
-                var docRef = db.collection("users").doc(email);
-                docRef.get().then((doc) => {
-                    if (doc.exists) {
-                        data1 = doc.data()
-                        pro_pic = data1.pro_pic;
-                        first_name = data1.first_name;
-                        last_name = data1.last_name;
-                        username = data1.username;
-                        email = data1.email;
-                        discord = data1.discord;
-                        company = data1.company
-                        phone = data1.phone_number
-                        if (data1.username == "" ){
-                            user_name = data1.email
-                        }
-                        if (data1.username != "") {
-                            user_name = data1.username;
-                        }
-                        document.getElementById("myImage").src = pro_pic;
-                        document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
-                        //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
-                        document.getElementById("uploaded_pic").style.display = "block";
-                        document.getElementById("first_name").value = first_name;
-                        document.getElementById("last_name").value = last_name;
-                        document.getElementById("username").value = username;
-                        document.getElementById("email").value = email;
-                        document.getElementById("discord").value = discord;
-                        document.getElementById("company").value = company;
-                        document.getElementById("phone").value = phone;
-
-                    } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No such document!");
-                        console.log(doc.data())
-                    }
-                }).catch((error) => {
-                    console.log("Error getting document:", error);
-                });
-        }
-        function signout() {
-            firebase.auth().signOut().then(() => {
-              // Sign-out successful.
-            }).catch((error) => {
-              // An error happened.
-            });
-        }
-        function savechanges() {
-          var user = firebase.auth().currentUser;
-            //splurket@gmail.com
-            var email1 = user.email;
-            
-            /*var email = getParameterByName('user'); 
-            console.log(email)*/
-            //still splurket
-            
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json, /;q=0.5");
-
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                email1 = data.encryptedstring;
-                first_name_send = document.getElementById("first_name").value;
-                last_name_send = document.getElementById("last_name").value;
-                username_send = document.getElementById("username").value;
-                email_send = document.getElementById("email").value;
-                discord_send = document.getElementById("discord").value;
-                company_send = document.getElementById("company").value;
-                phone_send = document.getElementById("phone").value;
-                db.collection('users').doc(email1).update({
-                        first_name: first_name_send,
-                        last_name: last_name_send,
-                        username: username_send,
-                        email: email_send,
-                        discord: discord_send,
-                        phone_number: phone_send,
-                        company: company_send,
-            })
-          });
-        }
-      function update_pic(source){
-        var user = firebase.auth().currentUser;
-            //splurket@gmail.com
-            var email1 = user.email;
-            
-            /*var email = getParameterByName('user'); 
-            console.log(email)*/
-            //still splurket
-            
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json, /;q=0.5");
-
-            var raw = JSON.stringify({
-              "stringtoencrypt": `${email1}`
-            });
-            //document.write(raw)
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: raw,
-              redirect: 'follow'
-            };
-
-            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
-              .then(function (response) {
-                  return response.json();
-              })
-              .then(function (data) {
-                //should be a base64 string by now
-                email1 = data.encryptedstring;
-                db.collection('users').doc(email1).update({
-                        pro_pic: source,
-            })
-          });
-        }
-  </script>
+</div>
+</div>
+</div>
 
 
 </body></html>
@@ -559,11 +178,6 @@
     <link rel="stylesheet" href="../assets/css/user.css">
         <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Firebase-->
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons'>
@@ -1007,6 +621,390 @@ display:block;
     </v-container>
   </v-app>
 </div>
+  <script>
+      $("#myImage").click(function() {
+          $("input[id='upload_image']").click();
+  });
+  </script>
+  <script>
+      $(function () {
+          $image_crop = $('#image_demo').croppie(
+              {
+                  enableExif: true,
+                  viewport: {
+                      width: 150,
+                      height: 150,
+                      type: 'circle'
+                  },
+                  boundary: {
+                      width: 300,
+                      height: 300
+                  }
+              });
+
+          $('#btnGrab').click(function () {
+              $('#upload_image').click();
+          });
+
+          var selectedFile;
+
+          $("#upload_image").change(function (evt) {
+              if ((selectedFile = evt.target.files[0])) {
+                  validateImageSizeType(selectedFile);
+              }
+          });
+
+          function validateImageSizeType(selectedImage){
+              var _URL = window.URL || window.webkitURL;
+              var img = new Image();
+
+              img.onload = function() {
+                  if(this.width >= 200 && this.height >= 200){
+                      readImgShowModal(selectedImage);
+                  }
+                  else
+                  {
+                      showAlert("This image doesn't have the minimum size required: 200px / 200px");
+                      $('#upload_image').val('');
+                  }
+              };
+
+              img.onerror = function() {
+                  showAlert("File type not valid: " + selectedImage.type);
+              };
+              
+              img.src = _URL.createObjectURL(selectedImage);
+          }
+
+          function showAlert(msj) {
+              $('#AddAlertMessage').html(msj);
+              $("#AddAlert").show();
+              setTimeout(function () { $("#AddAlert").hide(); }, 3500);
+          }
+
+          function readImgShowModal(selectedImg){
+              
+              //document.getElementById("upload_image").value = "";
+              $('#upload_image').val('');
+
+              var reader = new FileReader();
+              reader.onload = function (event) {
+                  $image_crop.croppie('bind', {
+                      url: event.target.result
+                  }).then(function () {
+                      console.log('Bind complete!');
+                  });
+              }
+              reader.readAsDataURL(selectedImg);
+              $('#uploadImageModal').modal('show');
+          }
+
+          $('#closeModal').click(function(){
+              var vmyImage = document.getElementById("myImage");
+              var vmyImg = new Image();
+
+              vmyImage.title = "Your image!";
+              vmyImg.title = "Your image!";
+
+              var nameImage = document.getElementById("nameMyImage");
+              var nameImg = document.getElementById("nameMyImg");
+
+              nameImage.innerHTML = "avatar";
+              nameImg.innerHTML = "avatar";
+              
+              vmyImage.src = "img/avatar-default-icon.png";
+              vmyImg.src = "img/avatar_placeholder_temporary.png";
+
+              vmyImg.className = "img-thumbnail img-chosen";
+              vmyImg.alt = "Your image!";
+
+              document.getElementById('myImg').innerHTML = "";
+              document.getElementById('myImg').append(vmyImg);
+          });
+
+          $('#confirmCrop').click(function () {
+              $image_crop.croppie('result', {
+                  type: 'canvas',
+                  size: 'viewport'
+              }).then(function (response) {            
+                  $('#noteInfo').html('You can select another picture!');
+
+                  withJSpure(response);
+
+                  $('#nameMyImg').html(selectedFile.name);
+
+                  $('#myImg').html('');
+                  $("<img>", {
+                      "src": response,
+                      "class": 'img-thumbnail img-chosen',
+                      "alt": 'Your image!',
+                      "title": selectedFile.name
+                  }).appendTo("#myImg");            
+
+                  $('#uploadImageModal').modal('hide');
+              })
+          });
+
+          function withJSpure(resp) {
+              var imgtag = document.getElementById("myImage");
+              imgtag.title = selectedFile.name;
+
+              var nameImg = document.getElementById("nameMyImage");
+              
+              imgtag.src = resp;
+          }
+
+          /*     $('#upload_image').change(function (evnt) {
+                  $('#noteInfo').html('You can select another picture!');
+              
+                  onChangeUploadJSpure(evnt);
+              
+                  var selectedFile = event.target.files[0];
+                  var reader = new FileReader();
+              
+                  $('#myImg').attr('title', selectedFile.name);
+                  $('#nameMyImg').html(selectedFile.name);
+              
+                  reader.onload = function (event) {
+                      $("#myImg").attr("src", event.target.result);
+                  };
+              
+                  reader.readAsDataURL(selectedFile);
+              }); */
+
+          /* function onChangeUploadJSpure(evt) {
+              var selectedFile = event.target.files[0];
+              var reader = new FileReader();
+
+              var imgtag = document.getElementById("myImage");
+              imgtag.title = selectedFile.name;
+
+              var nameImg = document.getElementById("nameMyImage");
+              nameImg.innerHTML = selectedFile.name;
+
+              reader.onload = function (event) {
+                  imgtag.src = event.target.result;
+              };
+
+              reader.readAsDataURL(selectedFile);
+          } */
+      });
+  </script>
+        </div>
+      </div>
+      
+      
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    const img1 = document.querySelector("#myImage");
+      observer = new MutationObserver((changes) => {
+        changes.forEach(change => {
+            if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
+                update_pic(img1.src);
+            }
+        });
+      });
+      observer.observe(img1, {attributes : true});
+    function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+        var name, email, photoUrl, uid, emailVerified;
+
+        var config = {
+            apiKey: "AIzaSyC-BUGGSsvUX8z4W1LcsJzS59yrL4__EsE",
+            authDomain: "splurket-66df1.firebaseapp.com",
+            databaseURL: "https://splurket-66df1-default-rtdb.firebaseio.com",
+            projectId: "splurket-66df1",
+            storageBucket: "splurket-66df1.appspot.com",
+            messagingSenderId: "286706779903",
+            appId: "1:286706779903:web:fd91c29319f9804e192eca",
+            measurementId: "G-QWQ2M658KL"
+          };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true }); 
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Access-Control-Allow-Origin", "*")
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                getuserdata(data);
+            });
+          } else {
+            console.log('fuck')
+            document.getElementById("avatar").style.display = "none";
+            document.getElementById("login").style.display = "block";
+          }
+        });
+        function getuserdata(data) {
+            email = data.encryptedstring;
+                var docRef = db.collection("users").doc(email);
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        data1 = doc.data()
+                        pro_pic = data1.pro_pic;
+                        first_name = data1.first_name;
+                        last_name = data1.last_name;
+                        username = data1.username;
+                        email = data1.email;
+                        discord = data1.discord;
+                        company = data1.company
+                        phone = data1.phone_number
+                        if (data1.username == "" ){
+                            user_name = data1.email
+                        }
+                        if (data1.username != "") {
+                            user_name = data1.username;
+                        }
+                        document.getElementById("myImage").src = pro_pic;
+                        document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
+                        //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
+                        document.getElementById("uploaded_pic").style.display = "block";
+                        document.getElementById("first_name").value = first_name;
+                        document.getElementById("last_name").value = last_name;
+                        document.getElementById("username").value = username;
+                        document.getElementById("email").value = email;
+                        document.getElementById("discord").value = discord;
+                        document.getElementById("company").value = company;
+                        document.getElementById("phone").value = phone;
+
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                        console.log(doc.data())
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        }
+        function signout() {
+            firebase.auth().signOut().then(() => {
+              // Sign-out successful.
+            }).catch((error) => {
+              // An error happened.
+            });
+        }
+        function savechanges() {
+          var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                email1 = data.encryptedstring;
+                first_name_send = document.getElementById("first_name").value;
+                last_name_send = document.getElementById("last_name").value;
+                username_send = document.getElementById("username").value;
+                email_send = document.getElementById("email").value;
+                discord_send = document.getElementById("discord").value;
+                company_send = document.getElementById("company").value;
+                phone_send = document.getElementById("phone").value;
+                db.collection('users').doc(email1).update({
+                        first_name: first_name_send,
+                        last_name: last_name_send,
+                        username: username_send,
+                        email: email_send,
+                        discord: discord_send,
+                        phone_number: phone_send,
+                        company: company_send,
+            })
+          });
+        }
+      function update_pic(source){
+        var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json, /;q=0.5");
+
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://americanrivergold.com/fluffybunnyin", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                email1 = data.encryptedstring;
+                db.collection('users').doc(email1).update({
+                        pro_pic: source,
+            })
+          });
+        }
+  </script>
 <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
