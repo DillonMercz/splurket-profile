@@ -40,7 +40,7 @@
                   <div class="col-md-6">
                       <center><div id="uploaded_pic" hidden="hidden">
                           <img id="myImage" class="img-chosen" alt="Your image!"
-                              src="" width="150px" height="150px" onchange="update_pic(this.src)"><hr>
+                              src="" width="150px" height="150px" onchange="update_pic(this.src)" style="display: none;"><hr>
                       </div>
                       <div hidden="hidden">
                       <input type="file" accept="image/*" name="upload_image" id="upload_image"><hr>
@@ -59,7 +59,7 @@
         </div>-->
         <center><h3 id="avatarusername"></h3></center>
         
-        <form class="form-horizontal" role="form">
+        <!--<form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-md-3 control-label">Username:</label>
             <div class="col-md-8">
@@ -101,7 +101,8 @@
             <div class="col-lg-8">
               <input class="form-control" type="text" id="phone" value="">
             </div>
-          </div>
+          </div>-->
+
           <!--<div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
@@ -114,7 +115,7 @@
               <input class="form-control" type="password" value="11111122333">
             </div>
           </div>-->
-          <div class="form-group">
+          <!--<div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
               <button type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c" onclick="savechanges()" value="Save Changes">Save Changes</button>
@@ -122,7 +123,7 @@
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
           </div>
-        </form>
+        </form>-->
       </div>
   </div>
 </div></center>
@@ -305,70 +306,71 @@ display:block;
                 <v-tab>Products</v-tab>
                   <v-tab-item
                   >
-                <v-row style="margin-top:10px;position:relative;width:100%">
-                    <v-col
-                      v-for="product in products"
-                      :key="product.name"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                      lg="3"
-                      style="min-width:324px"
-                    >
-
-                    <v-card :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory">
-                        <v-img
-                          height="250"
-                          :src="product.image"
-                          :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat"
-                        ></v-img>
-                        <div>
-                          <img :src="product.creatorpic" height="30px" width="30px" style="border-radius: 50%;margin-top:10px;margin-left: 10px":id="product.creator" onclick="window.top.location.href='./creator?creator='+this.id"></img></a>
-                            <p style="display: inline-block;margin: 0px;top:265px;left:50px;position: absolute;" class="cardtit" :id="product.creator" onclick="window.top.location.href='./user?user='+this.id">{{ product.creator }}
-                        </p>
-                      </div>
-                        <v-card-title class="subheading font-weight-bold" :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat">
-                          {{ product.name }}
-                        </v-card-title>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ product.desc }}</v-card-text>
-                        <v-card-text style="color:#52b36c;font-size:25px;padding-left: 16px;padding-top: 0px;position:relative;padding-bottom:0px;padding-top:15px">
-                          ★<span style="color:#52b36c;font-size:20px;top:0px">{{ product.reviewsn }}</span>
-                         </v-card-text></v-list>
-          
-                        <!--<v-list dense>
-                          <v-list-product
-                            v-for="(key, index) in filteredKeys"
-                            :key="index"
-                          >
-                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
-                              {{ key }}:
-                            </v-list-product-content>
-                            <v-list-product-content
-                              class="align-end"
-                              :class="{ 'blue--text': sortBy === key }"
-                            >
-                              {{ product[key.toLowerCase()] }}
-                            </v-list-product-content>
-                          </v-list-product>-->
-
-                        <v-divider></v-divider>
-                            <div style="padding-left: 11px;padding-top: 0px;position:absolute;bottom:5px;">
-                                <v-btn
-                                  icon
-                                  color="pink"
-                                >
-                                  <v-icon dark>
-                                    mdi-heart
-                                  </v-icon>
-                                </v-btn>
-                            </div>
-                        <div style="height:40px"></div>
-                        <p style="right:20px;display:block;bottom:-5px;position: absolute;font-size:20px">{{ product.price }}</span></p>
-                      </v-card>
-                  </v-tab-item>
-              </v-col>
-          </v-row>
-                    <v-tab>Reviews</v-tab>
+                <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Username:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="text" id="username" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="first_name" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="last_name" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="email" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Discord:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="discord" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Company:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="company" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone Number:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" id="phone" value="">
+            </div>
+          </div>
+          <!--<div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" id="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>-->
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c" onclick="savechanges()" value="Save Changes">Save Changes</button>
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+                </v-tab-item> <v-tab>Reviews</v-tab>
                         <v-tab-item
                   >
                     <v-col
