@@ -633,10 +633,8 @@ display:block;
 <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
   <script>
-    var v1img = document.getElementsByClassName("v-image__image--cover")
-    for (var i in v1img){
-    console.log(v1img[0].innerHTML)
-}
+var v1img = document.querySelector('.v-image__image--cover');
+v1img.id="v1img"
       $(function () {
           $image_crop = $('#image_demo').croppie(
               {
