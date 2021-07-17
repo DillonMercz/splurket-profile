@@ -1092,8 +1092,10 @@ new Vue({
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     } } });
-var v1img = document.getElementsByClassName('v-image__image--cover');
-console.log(v1img)
+var list = document.getElementsByClassName('v-image__image--cover');
+for (let item of list) {
+    console.log(item);
+}
 
 
         function signout() {
