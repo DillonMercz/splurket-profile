@@ -152,8 +152,476 @@
               </div>
           </div>
       </div>
-  </body>
-  <script>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="icon" src="/assets/images/Logo.ico">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css'>
+
+    <link rel="icon" type="image/x-icon" href="../assets/images/Logo.png" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- css -->
+    <link href='https://fonts.googleapis.com/css?family=Shadows Into Light Two' rel='stylesheet'>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<style type="text/css">
+    .headerdrop {
+      position: absolute;
+      border-top:solid 2px;
+      border-color: white;
+      top:98px;
+      background-color: #52b36c;
+      width:100%;
+      color: white;
+      display: none;
+      z-index: 5;
+}
+    .headerdrop:hover{
+        display: block;
+    }
+    .search-box{
+    display: inline;
+    border-right: 1px solid var(--secondary);
+    padding-right: 12px;
+    margin-right: 10px;
+}
+.subheading:hover{
+    color:#52b36c;
+    text-decoration: underline;
+}
+.e546783wyte {
+    color: rgb(135, 135, 135);
+    font-size: 15px;
+    padding-left: 16px;
+    padding-top: 0px;
+    color: #222325;
+    line-height: 22px;
+    font-weight: 400;
+    height: 65px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0 12px 5px;
+    margin-top: 5px;
+    word-wrap: break-word;
+    word-break: break-word;
+    -webkit-transition: .15s ease-in-out;
+    -o-transition: .15s ease-in-out;
+    transition: .15s ease-in-out;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.shadowlight{
+    font-family: 'Shadows Into Light Two';
+}
+.mb-1{
+    background-color: white;
+}
+.v-menu__content .theme--light .menuable__content__active{
+    top:55px !important;
+    left:650px !important;
+}
+.cardtit:hover{
+    color:#52b36c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.subheading{
+    cursor: pointer;
+    color: #222325;
+    line-height: 22px;
+    font-weight: 400;
+    height: 43px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0 12px 5px;
+    margin-top: 5px;
+    word-wrap: break-word;
+    word-break: break-word;
+    -webkit-transition: .15s ease-in-out;
+    -o-transition: .15s ease-in-out;
+    transition: .15s ease-in-out;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+</style>
+
+    <!-- Header.. -->
+<body>
+<style type="text/css">
+v-card-title{
+display:block;
+}
+</style><!-- partial:index.partial -->
+<div id="app" style="width:100%">
+  <v-app id="inspire">
+    <v-container fluid style="min-height:100%">
+      <v-data-iterator
+        :items="items"
+        :items-per-page.sync="itemsPerPage"
+        :page.sync="page"
+        :search="search"
+        :sort-by="sortBy.toLowerCase()"
+        :sort-desc="sortDesc"
+        hide-default-footer
+        disable-pagination
+        dense
+      >
+    <template v-slot:header="props">
+            <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:20px">
+                <v-tabs color="#52b36c">
+                <v-tab>Products</v-tab>
+                  <v-tab-item
+                  >
+                <v-row style="margin-top:10px;position:relative;width:100%">
+                    <v-col
+                      v-for="product in products"
+                      :key="product.name"
+                      cols="12"
+                      sm="6"
+                      md="4"
+                      lg="3"
+                      style="min-width:324px"
+                    >
+
+                    <v-card :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory">
+                        <v-img
+                          height="250"
+                          :src="product.image"
+                          :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat"
+                        ></v-img>
+                        <div>
+                          <img :src="product.creatorpic" height="30px" width="30px" style="border-radius: 50%;margin-top:10px;margin-left: 10px":id="product.creator" onclick="window.top.location.href='./creator?creator='+this.id"></img></a>
+                            <p style="display: inline-block;margin: 0px;top:265px;left:50px;position: absolute;" class="cardtit" :id="product.creator" onclick="window.top.location.href='./user?user='+this.id">{{ product.creator }}
+                        </p>
+                      </div>
+                        <v-card-title class="subheading font-weight-bold" :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat">
+                          {{ product.name }}
+                        </v-card-title>
+                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ product.desc }}</v-card-text>
+                        <v-card-text style="color:#52b36c;font-size:25px;padding-left: 16px;padding-top: 0px;position:relative;padding-bottom:0px;padding-top:15px">
+                          ★<span style="color:#52b36c;font-size:20px;top:0px">{{ product.reviewsn }}</span>
+                         </v-card-text></v-list>
+          
+                        <!--<v-list dense>
+                          <v-list-product
+                            v-for="(key, index) in filteredKeys"
+                            :key="index"
+                          >
+                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
+                              {{ key }}:
+                            </v-list-product-content>
+                            <v-list-product-content
+                              class="align-end"
+                              :class="{ 'blue--text': sortBy === key }"
+                            >
+                              {{ product[key.toLowerCase()] }}
+                            </v-list-product-content>
+                          </v-list-product>-->
+
+                        <v-divider></v-divider>
+                            <div style="padding-left: 11px;padding-top: 0px;position:absolute;bottom:5px;">
+                                <v-btn
+                                  icon
+                                  color="pink"
+                                >
+                                  <v-icon dark>
+                                    mdi-heart
+                                  </v-icon>
+                                </v-btn>
+                            </div>
+                        <div style="height:40px"></div>
+                        <p style="right:20px;display:block;bottom:-5px;position: absolute;font-size:20px">{{ product.price }}</span></p>
+                      </v-card>
+                  </v-tab-item>
+              </v-col>
+          </v-row>
+                    <v-tab>Reviews</v-tab>
+                        <v-tab-item
+                  >
+                    <v-col
+                      v-for="review in reviews"
+                      :key="review.name"
+                      cols="12"
+                      sm="6"
+                      md="4"
+                      lg="3"
+                      style="min-width:100%;width:100%"
+
+                    >
+
+                    <v-card style="width:100%"><br>
+                        <v-card-title class="subheading font-weight-bold">
+                          {{ review.name }}
+                        </v-card-title>
+                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ review.desc }}</v-card-text>
+                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;height:30px" class="e546783wyte" :id="review.reviewer" onclick="window.top.location.href='./user?user='+this.id">- {{ review.reviewer }}</v-card-text>
+                        <v-rating
+                          v-model="review.rate"
+                          background-color="green lighten-3"
+                          color="green"
+                          small
+                          readonly
+                          style=""
+                        ></v-rating>
+                        <!--<v-list dense>
+                          <v-list-product
+                            v-for="(key, index) in filteredKeys"
+                            :key="index"
+                          >
+                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
+                              {{ key }}:
+                            </v-list-product-content>
+                            <v-list-product-content
+                              class="align-end"
+                              :class="{ 'blue--text': sortBy === key }"
+                            >
+                              {{ product[key.toLowerCase()] }}
+                            </v-list-product-content>
+                          </v-list-product>-->
+
+                      </v-card>
+                  </v-tab-item>
+              </v-col>
+          </v-row>
+                    <v-tab>Badges</v-tab>
+                        <v-tab-item
+                      >
+                      <v-row style="margin-top:10px;position:relative;width:100%;height:100%">
+                        <v-col
+                          v-for="badge in badges"
+                          :key="badge.name"
+                          cols="12"
+                          sm="6"
+                          md="4"
+                          lg="3"
+                          style="min-width:324px"
+
+                        >
+
+                        <v-card style="width:100%">
+                            <img :src="badge.image" style="height:250px;width:100%"><br>
+                            <v-card-title class="subheading font-weight-bold">
+                              {{ badge.name }}
+                            </v-card-title>
+
+                            <!--<v-list dense>
+                              <v-list-product
+                                v-for="(key, index) in filteredKeys"
+                                :key="index"
+                              >
+                                <v-list-product-content :class="{ 'blue--text': sortBy === key }">
+                                  {{ key }}:
+                                </v-list-product-content>
+                                <v-list-product-content
+                                  class="align-end"
+                                  :class="{ 'blue--text': sortBy === key }"
+                                >
+                                  {{ product[key.toLowerCase()] }}
+                                </v-list-product-content>
+                              </v-list-product>-->
+
+                          </v-card>
+                      </v-tab-item>
+                  </v-col>
+              </v-row>
+
+          </v-tabs></center>
+</div>
+</template>
+  
+        <template v-slot:default="props">
+            <v-col
+              v-for="item in props.items"
+              :key="item.name"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <v-card :id="item.name">
+                <div style="
+                    height: 5px;
+                "></div>
+                <center><v-img
+                  height="150px"
+                  width="150px"
+                  :src="item.image"
+                  :id="item.id"
+                  style="border-radius: 50%;margin-top:50px"
+                ></v-img></center>
+              </div>
+                <center><v-card-title class="subheading font-weight-bold" :id="item.id" style="display:block">
+                  {{ item.name }}
+                </v-card-title></center>
+                <strong><center><p style="font-family: 'Shadows Into Light Two';font-size:15px">{{ item.tag }}</p></center></strong>
+                <center><v-divider style="width:80%"></v-divider></center><br>
+                <center><p style="font-size:15px;top: 290px;left: 125px;margin-bottom:0px !important">Splurkocity:</p></center>
+                <center><v-rating
+                  v-model="item.reviewsn"
+                  background-color="green lighten-3"
+                  color="green"
+                  medium
+                  readonly
+                ></v-rating></center><br>
+                <center><strong><v-btn style="background-color:#52b36c; color:white">
+                Message Me!
+              </v-btn></strong></center><br>
+  
+                <!--<v-list dense>
+                  <v-list-item
+                    v-for="(key, index) in filteredKeys"
+                    :key="index"
+                  >
+                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                      {{ key }}:
+                    </v-list-item-content>
+                    <v-list-item-content
+                      class="align-end"
+                      :class="{ 'blue--text': sortBy === key }"
+                    >
+                      {{ item[key.toLowerCase()] }}
+                    </v-list-item-content>
+                  </v-list-item>-->
+              </v-card>
+              <div style="height:5%"></div>
+              <v-card :id="item.name" style="padding-top:50px">
+                <center><h1 class="shadowlight">Extra Info</h1></center>
+                <center><v-divider style="width:80%"></v-divider></center><br>
+              </div>  
+                <v-list dense>
+                  <v-list-item
+                    v-for="(key, index) in filteredKeys"
+                    :key="index"
+                  >
+                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                      {{ key }}:
+                    </v-list-item-content>
+                    <v-list-item-content
+                      class="align-end"
+                      :class="{ 'blue--text': sortBy === key }"
+                    ><center><v-chip
+                      close-icon="mdi-delete"
+                      color="green"
+                      outlined
+                    > {{ item[key.toLowerCase()] }}</v-chip></center>
+                    </v-list-item-content>
+                  </v-list-item>
+              </v-list>
+              <v-list-item
+                  >
+                    <v-list-item-content>
+                      Skills:
+                    </v-list-item-content>
+                </v-list-item>
+                    <v-chip
+                    v-for="skill in skills"
+                      close-icon="mdi-delete"
+                      color="green"
+                      outlined
+                      style="margin-bottom: 10px;margin-left: 5px;"
+                    >{{ skill }}</v-chip>
+              </v-card>
+            </v-col>
+          </v-row>
+        </template>
+       <!-- <template v-slot:footer>
+          <v-row
+            class="mt-2"
+            align="center"
+            justify="center"
+          >
+            <span class="grey--text">Items per page</span>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  text
+                  color="primary"
+                  class="ml-2"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  {{ itemsPerPage }}
+                  <v-icon>mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(number, index) in itemsPerPageArray"
+                  :key="index"
+                  @click="updateItemsPerPage(number)"
+                >
+                  <v-list-item-title>{{ number }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+  
+            <v-spacer></v-spacer>
+  
+            <span
+              class="mr-4
+              grey--text"
+            >
+              Page {{ page }} of {{ numberOfPages }}
+            </span>
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="mr-1"
+              @click="formerPage"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="ml-1"
+              @click="nextPage"
+            >
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-row>
+        </template>-->
+      </v-data-iterator>
+    </v-container>
+  </v-app>
+</div>
+<script>
       $("#myImage").click(function() {
           $("input[id='upload_image']").click();
   });
@@ -717,470 +1185,5 @@ new Vue({
           });
         }
   </script>
-
-
-</body></html>
-
-
-
-
-
-
-
-
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-    <link rel="icon" src="/assets/images/Logo.ico">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../assets/css/user.css">
-        <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons'>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css'>
-
-    <link rel="icon" type="image/x-icon" href="../assets/images/Logo.png" />
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- css -->
-    <link href='https://fonts.googleapis.com/css?family=Shadows Into Light Two' rel='stylesheet'>
-    <script src="https://unpkg.com/vue"></script>
-</head>
-<style type="text/css">
-    .headerdrop {
-      position: absolute;
-      border-top:solid 2px;
-      border-color: white;
-      top:98px;
-      background-color: #52b36c;
-      width:100%;
-      color: white;
-      display: none;
-      z-index: 5;
-}
-    .headerdrop:hover{
-        display: block;
-    }
-    .search-box{
-    display: inline;
-    border-right: 1px solid var(--secondary);
-    padding-right: 12px;
-    margin-right: 10px;
-}
-.subheading:hover{
-    color:#52b36c;
-    text-decoration: underline;
-}
-.e546783wyte {
-    color: rgb(135, 135, 135);
-    font-size: 15px;
-    padding-left: 16px;
-    padding-top: 0px;
-    color: #222325;
-    line-height: 22px;
-    font-weight: 400;
-    height: 65px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 0 12px 5px;
-    margin-top: 5px;
-    word-wrap: break-word;
-    word-break: break-word;
-    -webkit-transition: .15s ease-in-out;
-    -o-transition: .15s ease-in-out;
-    transition: .15s ease-in-out;
-    display: block;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-.shadowlight{
-    font-family: 'Shadows Into Light Two';
-}
-.mb-1{
-    background-color: white;
-}
-.v-menu__content .theme--light .menuable__content__active{
-    top:55px !important;
-    left:650px !important;
-}
-.cardtit:hover{
-    color:#52b36c;
-    cursor: pointer;
-    text-decoration: underline;
-}
-.subheading{
-    cursor: pointer;
-    color: #222325;
-    line-height: 22px;
-    font-weight: 400;
-    height: 43px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 0 12px 5px;
-    margin-top: 5px;
-    word-wrap: break-word;
-    word-break: break-word;
-    -webkit-transition: .15s ease-in-out;
-    -o-transition: .15s ease-in-out;
-    transition: .15s ease-in-out;
-    display: block;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-</style>
-
-    <!-- Header.. -->
-<body>
-<style type="text/css">
-v-card-title{
-display:block;
-}
-</style><!-- partial:index.partial -->
-<div id="app" style="width:100%">
-  <v-app id="inspire">
-    <v-container fluid style="min-height:100%">
-      <v-data-iterator
-        :items="items"
-        :items-per-page.sync="itemsPerPage"
-        :page.sync="page"
-        :search="search"
-        :sort-by="sortBy.toLowerCase()"
-        :sort-desc="sortDesc"
-        hide-default-footer
-        disable-pagination
-        dense
-      >
-    <template v-slot:header="props">
-            <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:20px">
-                <v-tabs color="#52b36c">
-                <v-tab>Products</v-tab>
-                  <v-tab-item
-                  >
-                <v-row style="margin-top:10px;position:relative;width:100%">
-                    <v-col
-                      v-for="product in products"
-                      :key="product.name"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                      lg="3"
-                      style="min-width:324px"
-                    >
-
-                    <v-card :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory">
-                        <v-img
-                          height="250"
-                          :src="product.image"
-                          :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat"
-                        ></v-img>
-                        <div>
-                          <img :src="product.creatorpic" height="30px" width="30px" style="border-radius: 50%;margin-top:10px;margin-left: 10px":id="product.creator" onclick="window.top.location.href='./creator?creator='+this.id"></img></a>
-                            <p style="display: inline-block;margin: 0px;top:265px;left:50px;position: absolute;" class="cardtit" :id="product.creator" onclick="window.top.location.href='./user?user='+this.id">{{ product.creator }}
-                        </p>
-                      </div>
-                        <v-card-title class="subheading font-weight-bold" :id="product.id" :data-cat="product.category" :data-subcat="product.subcategory" onclick="window.top.location.href='./product?product='+this.id+'&cat='+this.dataset.cat+'&subcat='+this.dataset.subcat">
-                          {{ product.name }}
-                        </v-card-title>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ product.desc }}</v-card-text>
-                        <v-card-text style="color:#52b36c;font-size:25px;padding-left: 16px;padding-top: 0px;position:relative;padding-bottom:0px;padding-top:15px">
-                          ★<span style="color:#52b36c;font-size:20px;top:0px">{{ product.reviewsn }}</span>
-                         </v-card-text></v-list>
-          
-                        <!--<v-list dense>
-                          <v-list-product
-                            v-for="(key, index) in filteredKeys"
-                            :key="index"
-                          >
-                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
-                              {{ key }}:
-                            </v-list-product-content>
-                            <v-list-product-content
-                              class="align-end"
-                              :class="{ 'blue--text': sortBy === key }"
-                            >
-                              {{ product[key.toLowerCase()] }}
-                            </v-list-product-content>
-                          </v-list-product>-->
-
-                        <v-divider></v-divider>
-                            <div style="padding-left: 11px;padding-top: 0px;position:absolute;bottom:5px;">
-                                <v-btn
-                                  icon
-                                  color="pink"
-                                >
-                                  <v-icon dark>
-                                    mdi-heart
-                                  </v-icon>
-                                </v-btn>
-                            </div>
-                        <div style="height:40px"></div>
-                        <p style="right:20px;display:block;bottom:-5px;position: absolute;font-size:20px">{{ product.price }}</span></p>
-                      </v-card>
-                  </v-tab-item>
-              </v-col>
-          </v-row>
-                    <v-tab>Reviews</v-tab>
-                        <v-tab-item
-                  >
-                    <v-col
-                      v-for="review in reviews"
-                      :key="review.name"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                      lg="3"
-                      style="min-width:100%;width:100%"
-
-                    >
-
-                    <v-card style="width:100%"><br>
-                        <v-card-title class="subheading font-weight-bold">
-                          {{ review.name }}
-                        </v-card-title>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ review.desc }}</v-card-text>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;height:30px" class="e546783wyte" :id="review.reviewer" onclick="window.top.location.href='./user?user='+this.id">- {{ review.reviewer }}</v-card-text>
-                        <v-rating
-                          v-model="review.rate"
-                          background-color="green lighten-3"
-                          color="green"
-                          small
-                          readonly
-                          style=""
-                        ></v-rating>
-                        <!--<v-list dense>
-                          <v-list-product
-                            v-for="(key, index) in filteredKeys"
-                            :key="index"
-                          >
-                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
-                              {{ key }}:
-                            </v-list-product-content>
-                            <v-list-product-content
-                              class="align-end"
-                              :class="{ 'blue--text': sortBy === key }"
-                            >
-                              {{ product[key.toLowerCase()] }}
-                            </v-list-product-content>
-                          </v-list-product>-->
-
-                      </v-card>
-                  </v-tab-item>
-              </v-col>
-          </v-row>
-                    <v-tab>Badges</v-tab>
-                        <v-tab-item
-                      >
-                      <v-row style="margin-top:10px;position:relative;width:100%;height:100%">
-                        <v-col
-                          v-for="badge in badges"
-                          :key="badge.name"
-                          cols="12"
-                          sm="6"
-                          md="4"
-                          lg="3"
-                          style="min-width:324px"
-
-                        >
-
-                        <v-card style="width:100%">
-                            <img :src="badge.image" style="height:250px;width:100%"><br>
-                            <v-card-title class="subheading font-weight-bold">
-                              {{ badge.name }}
-                            </v-card-title>
-
-                            <!--<v-list dense>
-                              <v-list-product
-                                v-for="(key, index) in filteredKeys"
-                                :key="index"
-                              >
-                                <v-list-product-content :class="{ 'blue--text': sortBy === key }">
-                                  {{ key }}:
-                                </v-list-product-content>
-                                <v-list-product-content
-                                  class="align-end"
-                                  :class="{ 'blue--text': sortBy === key }"
-                                >
-                                  {{ product[key.toLowerCase()] }}
-                                </v-list-product-content>
-                              </v-list-product>-->
-
-                          </v-card>
-                      </v-tab-item>
-                  </v-col>
-              </v-row>
-
-          </v-tabs></center>
-</div>
-</template>
-  
-        <template v-slot:default="props">
-            <v-col
-              v-for="item in props.items"
-              :key="item.name"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
-            >
-              <v-card :id="item.name">
-                <div style="
-                    height: 5px;
-                "></div>
-                <center><v-img
-                  height="150px"
-                  width="150px"
-                  :src="item.image"
-                  :id="item.id"
-                  style="border-radius: 50%;margin-top:50px"
-                ></v-img></center>
-              </div>
-                <center><v-card-title class="subheading font-weight-bold" :id="item.id" style="display:block">
-                  {{ item.name }}
-                </v-card-title></center>
-                <strong><center><p style="font-family: 'Shadows Into Light Two';font-size:15px">{{ item.tag }}</p></center></strong>
-                <center><v-divider style="width:80%"></v-divider></center><br>
-                <center><p style="font-size:15px;top: 290px;left: 125px;margin-bottom:0px !important">Splurkocity:</p></center>
-                <center><v-rating
-                  v-model="item.reviewsn"
-                  background-color="green lighten-3"
-                  color="green"
-                  medium
-                  readonly
-                ></v-rating></center><br>
-                <center><strong><v-btn style="background-color:#52b36c; color:white">
-                Message Me!
-              </v-btn></strong></center><br>
-  
-                <!--<v-list dense>
-                  <v-list-item
-                    v-for="(key, index) in filteredKeys"
-                    :key="index"
-                  >
-                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
-                      {{ key }}:
-                    </v-list-item-content>
-                    <v-list-item-content
-                      class="align-end"
-                      :class="{ 'blue--text': sortBy === key }"
-                    >
-                      {{ item[key.toLowerCase()] }}
-                    </v-list-item-content>
-                  </v-list-item>-->
-              </v-card>
-              <div style="height:5%"></div>
-              <v-card :id="item.name" style="padding-top:50px">
-                <center><h1 class="shadowlight">Extra Info</h1></center>
-                <center><v-divider style="width:80%"></v-divider></center><br>
-              </div>  
-                <v-list dense>
-                  <v-list-item
-                    v-for="(key, index) in filteredKeys"
-                    :key="index"
-                  >
-                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
-                      {{ key }}:
-                    </v-list-item-content>
-                    <v-list-item-content
-                      class="align-end"
-                      :class="{ 'blue--text': sortBy === key }"
-                    ><center><v-chip
-                      close-icon="mdi-delete"
-                      color="green"
-                      outlined
-                    > {{ item[key.toLowerCase()] }}</v-chip></center>
-                    </v-list-item-content>
-                  </v-list-item>
-              </v-list>
-              <v-list-item
-                  >
-                    <v-list-item-content>
-                      Skills:
-                    </v-list-item-content>
-                </v-list-item>
-                    <v-chip
-                    v-for="skill in skills"
-                      close-icon="mdi-delete"
-                      color="green"
-                      outlined
-                      style="margin-bottom: 10px;margin-left: 5px;"
-                    >{{ skill }}</v-chip>
-              </v-card>
-            </v-col>
-          </v-row>
-        </template>
-       <!-- <template v-slot:footer>
-          <v-row
-            class="mt-2"
-            align="center"
-            justify="center"
-          >
-            <span class="grey--text">Items per page</span>
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  dark
-                  text
-                  color="primary"
-                  class="ml-2"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  {{ itemsPerPage }}
-                  <v-icon>mdi-chevron-down</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(number, index) in itemsPerPageArray"
-                  :key="index"
-                  @click="updateItemsPerPage(number)"
-                >
-                  <v-list-item-title>{{ number }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-  
-            <v-spacer></v-spacer>
-  
-            <span
-              class="mr-4
-              grey--text"
-            >
-              Page {{ page }} of {{ numberOfPages }}
-            </span>
-            <v-btn
-              fab
-              dark
-              color="blue darken-3"
-              class="mr-1"
-              @click="formerPage"
-            >
-              <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <v-btn
-              fab
-              dark
-              color="blue darken-3"
-              class="ml-1"
-              @click="nextPage"
-            >
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-          </v-row>
-        </template>-->
-      </v-data-iterator>
-    </v-container>
-  </v-app>
-</div>
 <script src="croppie/croppie.js"></script>
 </body>
