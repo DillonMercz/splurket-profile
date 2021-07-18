@@ -866,8 +866,8 @@ var email1;
 })
         function renderUserData(doc){
            var doc1 = JSON.parse(doc)
-           data1 = JSON.stringify(doc1.fields)
-           console.log(data1.email)
+           data1 = doc1.fields
+           console.log(JSON.stringify(data1.discord.stringValue))
             pro_pic = data1.stringValue.pro_pic;
             first_name = data1.stringValue.stringValue.first_name;
             last_name = data1.stringValue.last_name;
