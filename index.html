@@ -865,16 +865,15 @@ var email1;
 }
 })
         function renderUserData(doc){
-            data1 = (doc)
-            console.log(data1.discord)
-            pro_pic = (data1.pro_pic.stringValue)
-            first_name = (data1.first_name.stringValue)
-            last_name = (data1.last_name.stringValue)
-            username = (data1.username.stringValue)
-            email = (data1.email.stringValue)
-            discord = (data1.discord.stringValue);
-            company = (data1.company.stringValue);
-            phone = (data1.phone_number.stringValue)
+            data1 = JSON.parse(doc)
+            pro_pic = JSON.stringify(data1.pro_pic.stringValue)
+            first_name = JSON.stringify(data1.first_name.stringValue)
+            last_name = JSON.stringify(data1.last_name.stringValue)
+            username = JSON.stringify(data1.username.stringValue)
+            email = JSON.stringify(data1.email.stringValue)
+            discord = JSON.stringify(data1.discord.stringValue);
+            company = JSON.stringify(data1.company.stringValue);
+            phone = JSON.stringify(data1.phone_number.stringValue)
 
             if (data1.username == "" ){
                 user_name = data1.email
