@@ -864,7 +864,7 @@ var email1;
             .catch(error => console.log('error', error));
 }
 })
-        function renderUserData(doc)
+        function renderUserData(doc){
            console.log(JSON.stringify(doc.fields))
             pro_pic = data1.pro_pic;
             first_name = data1.first_name;
@@ -893,15 +893,8 @@ var email1;
             document.getElementById("company").value = company;
             document.getElementById("phone").value = phone;
             getuserprodata(username)
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-            console.log(doc.data())
         }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-}
+
 function getuserprodata(prodata){
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
