@@ -844,57 +844,83 @@ var email1;
             var user = firebase.auth().currentUser;
             //splurket@gmail.com
             var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
             var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "text/plain");
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Access-Control-Allow-Origin", "*")
+            myHeaders.append("Accept", "application/json, /;q=0.5");
 
-            var raw1 = {
-              "email":email1
-            }
-            var raw = JSON.stringify(raw1)
+            var raw = JSON.stringify({
+              "stringtoencrypt": `${email1}`
+            });
+            //document.write(raw)
             var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
             };
 
-            fetch("https://script.google.com/macros/s/AKfycbwSO9sotW3TKNL0SAJEBKl76ScGNek3v_bYx-pudqHZw3ARe0bjswj3nCRuU_O3UddN/exec", requestOptions)
-            .then(response => response.text())
-            .then(result => renderUserData(result))
-            .catch(error => console.log('error', error));
-}
-})
-        function renderUserData(doc){
-            data1 = JSON.parse(doc)
-            pro_pic = JSON.stringify(data1.pro_pic.stringValue)
-            first_name = JSON.stringify(data1.first_name.stringValue).replace(String.fromCharCode(92),String.fromCharCode(92,92))
-            last_name = JSON.stringify(data1.last_name.stringValue)
-            username = JSON.stringify(data1.username.stringValue).replace(String.fromCharCode(92),"")
-            email = JSON.stringify(data1.email.stringValue)
-            discord = JSON.stringify(data1.discord.stringValue);
-            company = JSON.stringify(data1.company.stringValue);
-            phone = JSON.stringify(data1.phone_number.stringValue)
+            fetch("https://script.google.com/macros/s/AKfycbxPmCHbEwD8Ubyd4sLZbB0ihSpunPWCQfNPE-IN1PNcnTGMQo8rWuBNzlCtoSDzKVvdig/exec", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                getuserdata1(data);
+            });
+          } else {
+            console.log('fuck')
+            document.getElementById("avatar").style.display = "none";
+            document.getElementById("login").style.display = "block";
+          }
+        });
+        function getuserdata1(data) {
+            email = data.encryptedstring;
+                var docRef = db.collection("users").doc(email);
+                docRef.get().then((doc) => {
+                    if (doc.exists) {
+                        data1 = doc.data()
+                        pro_pic = data1.pro_pic;
+                        first_name = data1.first_name;
+                        last_name = data1.last_name;
+                        username = data1.username;
+                        email = data1.email;
+                        discord = data1.discord;
+                        company = data1.company
+                        phone = data1.phone_number
 
-            if (data1.username == "" ){
-                user_name = data1.email
-            }
-            if (data1.username != "") {
-                user_name = data1.username;
-            }
-            pro_pic = pro_pic
-            document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
-            //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
-            document.getElementById("uploaded_pic").style.display = "block";
-            document.getElementById("first_name").value = first_name;
-            document.getElementById("last_name").value = last_name;
-            document.getElementById("username").value = username;
-            document.getElementById("email").value = email;
-            document.getElementById("discord").value = discord;
-            document.getElementById("company").value = company;
-            document.getElementById("phone").value = phone;
-            getuserprodata(username)
+                        if (data1.username == "" ){
+                            user_name = data1.email
+                        }
+                        if (data1.username != "") {
+                            user_name = data1.username;
+                        }
+                        pro_pic = pro_pic
+                        document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
+                        //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
+                        document.getElementById("uploaded_pic").style.display = "block";
+                        document.getElementById("first_name").value = first_name;
+                        document.getElementById("last_name").value = last_name;
+                        document.getElementById("username").value = username;
+                        document.getElementById("email").value = email;
+                        document.getElementById("discord").value = discord;
+                        document.getElementById("company").value = company;
+                        document.getElementById("phone").value = phone;
+                        getuserprodata(username)
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                        console.log(doc.data())
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
         }
-
 function getuserprodata(prodata){
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
