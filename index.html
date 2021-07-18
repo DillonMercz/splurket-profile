@@ -804,16 +804,6 @@ display:block;
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
-    const img1 = document.querySelector("#myImage");
-      observer = new MutationObserver((changes) => {
-        changes.forEach(change => {
-            if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
-                update_pic(img1.src);
-            }
-        });
-      });
-      observer.observe(img1, {attributes : true});
-
 var product_items;
 var catshit;
 var user_data = [];
@@ -1081,7 +1071,22 @@ new Vue({
     filteredKeys() {
       return this.keys.filter(key => key !== 'Name');
     } },
+  mounted: function () {
+  this.$nextTick(function () {
+    // Code that will run only after the
+    // entire view has been rendered
+    const img1 = document.querySelector("#myImage");
+    observer = new MutationObserver((changes) => {
+      changes.forEach(change => {
+          if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
+              update_pic(img1.src);
+          }
+      });
+    });
+    observer.observe(img1, {attributes : true});
 
+  })
+},
   methods: {
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
