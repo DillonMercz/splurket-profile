@@ -1082,6 +1082,7 @@ new Vue({
       changes.forEach(change => {
           if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
               update_pic(img1.src);
+              console.log(img1.src)
           }
       });
     });
