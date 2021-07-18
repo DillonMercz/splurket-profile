@@ -634,7 +634,8 @@ display:block;
 <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
   <script>
-    var product_items;
+    var username;
+var product_items;
 var catshit;
 var user_data = [];
 var products=[];
@@ -1191,6 +1192,10 @@ for (var i in list) {
                 email1 = data.encryptedstring;
                 db.collection('users').doc(email1).update({
                 pro_pic: source,
+
+            })
+            db.collection('pubusers').doc(username).update({
+                image: source,
             })
                 console.log(source)
           });
