@@ -812,6 +812,7 @@ var badges=[];
 var reviews=[];
 var skills=[];
 var user;
+var pro_pic;
 var email1;
     function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');
@@ -898,7 +899,7 @@ var email1;
                         if (data1.username != "") {
                             user_name = data1.username;
                         }
-                        document.getElementById("myImage").src = pro_pic;
+                        pro_pic = pro_pic
                         document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         document.getElementById("uploaded_pic").style.display = "block";
@@ -1075,6 +1076,7 @@ new Vue({
   this.$nextTick(function () {
     // Code that will run only after the
     // entire view has been rendered
+    document.getElementById("myImage").src = pro_pic;
     const img1 = document.querySelector("#myImage");
     observer = new MutationObserver((changes) => {
       changes.forEach(change => {
