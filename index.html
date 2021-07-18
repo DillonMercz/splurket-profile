@@ -858,15 +858,14 @@ var email1;
             redirect: 'follow'
             };
 
-            fetch("https://script.google.com/macros/s/AKfycbwibACkIJR7iAAodv1OdKHL5Mx1ywTr_GbHmuAm37Ham8nivOW_XJBZTGmw7mF8feFs/exec", requestOptions)
+            fetch("https://script.google.com/macros/s/AKfycbwSO9sotW3TKNL0SAJEBKl76ScGNek3v_bYx-pudqHZw3ARe0bjswj3nCRuU_O3UddN/exec", requestOptions)
             .then(response => response.text())
             .then(result => renderUserData(result))
             .catch(error => console.log('error', error));
 }
 })
         function renderUserData(doc){
-           var doc1 = JSON.parse(doc)
-           data1 = doc1.fields
+           var data1 = JSON.parse(doc)
            console.log(JSON.stringify(data1.discord))
             console.log(JSON.stringify(data1.first_name.stringValue))
             console.log(JSON.stringify(data1.last_name.stringValue))
