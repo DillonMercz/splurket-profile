@@ -869,7 +869,7 @@ var email1;
             pro_pic = JSON.stringify(data1.pro_pic.stringValue)
             first_name = JSON.stringify(data1.first_name.stringValue).replace(String.fromCharCode(92),String.fromCharCode(92,92))
             last_name = JSON.stringify(data1.last_name.stringValue)
-            username = JSON.stringify(data1.username.stringValue).replace(String.fromCharCode(92),String.fromCharCode(92,92))
+            username = JSON.stringify(data1.username.stringValue).replace(String.fromCharCode(92),"")
             email = JSON.stringify(data1.email.stringValue)
             discord = JSON.stringify(data1.discord.stringValue);
             company = JSON.stringify(data1.company.stringValue);
