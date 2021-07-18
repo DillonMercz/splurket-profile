@@ -480,7 +480,7 @@ display:block;
                 <center><img
                   height="150px"
                   width="150px"
-                  src=""
+                  src="item.image"
                   id="myImage"
                   onclick="document.getElementById('upload_image').click()"
                   style="border-radius: 50%;margin-top:50px"
@@ -804,6 +804,16 @@ display:block;
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
+    const img1 = document.querySelector("#myImage");
+      observer = new MutationObserver((changes) => {
+        changes.forEach(change => {
+            if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
+                update_pic(img1.src);
+            }
+        });
+      });
+      observer.observe(img1, {attributes : true});
+
 var product_items;
 var catshit;
 var user_data = [];
