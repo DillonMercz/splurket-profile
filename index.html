@@ -380,35 +380,34 @@ display:block;
           <div class="form-group">
             <label class="col-lg-3 control-label">Education</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="last_name" value="">
+              <input class="form-control" type="text" id="education" value="">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Skills:</label>
             <div class="col-lg-8">
               <v-layout wrap>
-        <v-flex xs12>
-          <v-combobox multiple
-                    v-model="select" 
-                    label="Tags" 
-                    append-icon
-                    chips
-                    deletable-chips
-                    class="tag-input"
-                    :delimiters="[',']"
-                    :search-input.sync="search" 
-                    @keyup.tab="updateTags"
-                    @paste="updateTags">
-          </v-combobox>
-        </v-flex>
-        
-            <v-chip close v-for="tag in select"
-                    color="success" 
-                    text-color="white">
-             &nbsp; <v-icon left>label</v-icon>{{tag}}
-            </v-chip>  
+                <v-flex xs12>
+                  <v-combobox multiple
+                            v-model="skills" 
+                            label="Skills" 
+                            append-icon
+                            chips
+                            deletable-chips
+                            class="tag-input"
+                            :delimiters="[',']"
+                            @keyup.tab="updateTags"
+                            @paste="updateTags">
+                  </v-combobox>
+                </v-flex>
+                
+                    <v-chip close v-for="tag in skills"
+                            color="success" 
+                            text-color="white">
+                     &nbsp; <v-icon left>label</v-icon>{{tag}}
+                    </v-chip>  
 
-      </v-layout>
+              </v-layout>
             </div>
           </div>
           
@@ -718,6 +717,7 @@ var email1;
             document.getElementById("login").style.display = "block";
           }
         });
+
         function getuserdata1(data) {
             email = data.encryptedstring;
                 var docRef = db.collection("users").doc(email);
@@ -740,6 +740,7 @@ var email1;
                             user_name = data1.username;
                         }
                         pro_pic = pro_pic
+
                         //document.getElementById("avatarusername").innerText = "Profile Info For " + user_name + ":";
                         //document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
                         //document.getElementById("uploaded_pic").style.display = "block";
@@ -1075,7 +1076,9 @@ new Vue({
       products:products,
       badges:badges,
       reviews:reviews,
-      items: user_data};},
+      items: user_data,
+      items: [],
+      search: ""};},
   computed: {
     numberOfPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
@@ -1101,6 +1104,14 @@ new Vue({
   })
 },
   methods: {
+      updateTags() {
+      this.$nextTick(() => {
+        this.skills.push(...this.search.split(","));
+        this.$nextTick(() => {
+          this.search = "";
+        });
+      });
+    },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
     },
