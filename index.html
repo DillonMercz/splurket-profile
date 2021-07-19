@@ -370,94 +370,47 @@ display:block;
         </form>
                 </v-tab-item> <v-tab>Creator Settings</v-tab>
                         <v-tab-item>
-                    <!--<v-col
-                      v-for="review in reviews"
-                      :key="review.name"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                      lg="3"
-                      style="min-width:100%;width:100%"
-
-                    >
-
-                    <v-card style="width:100%"><br>
-                        <v-card-title class="subheading font-weight-bold">
-                          {{ review.name }}
-                        </v-card-title>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;" class="e546783wyte">{{ review.desc }}</v-card-text>
-                        <v-card-text style="color:#878787;font-size:15px;padding-left: 16px;padding-top: 0px;height:30px" class="e546783wyte" :id="review.reviewer" onclick="window.top.location.href='./user?user='+this.id">- {{ review.reviewer }}</v-card-text>
-                        <v-rating
-                          v-model="review.rate"
-                          background-color="green lighten-3"
-                          color="green"
-                          small
-                          readonly
-                          style=""
-                        ></v-rating>-->
-                        <!--<v-list dense>
-                          <v-list-product
-                            v-for="(key, index) in filteredKeys"
-                            :key="index"
-                          >
-                            <v-list-product-content :class="{ 'blue--text': sortBy === key }">
-                              {{ key }}:
-                            </v-list-product-content>
-                            <v-list-product-content
-                              class="align-end"
-                              :class="{ 'blue--text': sortBy === key }"
-                            >
-                              {{ product[key.toLowerCase()] }}
-                            </v-list-product-content>
-                          </v-list-product>-->
-
-                      <!--</v-card>
-                  </v-tab-item>
-              </v-col>
-          </v-row>-->
           <form class="form-horizontal" role="form"style="width:50%">
           <div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" id="username" value="" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">Location</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="first_name" value="">
+              <input class="form-control" type="text" id="location" value="">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Education</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" id="last_name" value="">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
+            <label class="col-lg-3 control-label">Skills:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" id="email" value="">
+              <v-layout wrap>
+                <v-flex xs12>
+                  <v-combobox multiple
+                            v-model="skills" 
+                            label="Skills" 
+                            append-icon
+                            chips
+                            deletable-chips
+                            class="tag-input"
+                            :delimiters="[',']"
+                            @keyup.tab="updateTags"
+                            @paste="updateTags">
+                  </v-combobox>
+                </v-flex>
+                
+                    <v-chip close v-for="tag in skills"
+                            color="success" 
+                            text-color="white">
+                     &nbsp; <v-icon left>label</v-icon>{{tag}}
+                    </v-chip>  
+
+              </v-layout>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Discord:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" id="discord" value="">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Company:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" id="company" value="">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Phone Number:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" id="phone" value="">
-            </div>
-          </div>
+          
           <!--<div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
@@ -1122,6 +1075,8 @@ new Vue({
       badges:badges,
       reviews:reviews,
       items: user_data};},
+      items: [],
+      search: ""
   computed: {
     numberOfPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
@@ -1147,6 +1102,14 @@ new Vue({
   })
 },
   methods: {
+      updateTags() {
+      this.$nextTick(() => {
+        this.skills.push(...this.search.split(","));
+        this.$nextTick(() => {
+          this.search = "";
+        });
+      });
+    },
     nextPage() {
       if (this.page + 1 <= this.numberOfPages) this.page += 1;
     },
