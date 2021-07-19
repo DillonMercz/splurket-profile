@@ -399,13 +399,7 @@ display:block;
                             @keyup.tab="updateTags"
                             @paste="updateTags">
                   </v-combobox>
-                </v-flex>
-                
-                    <v-chip close v-for="tag in skills"
-                            color="success" 
-                            text-color="white">
-                     &nbsp; <v-icon left>label</v-icon>{{tag}}
-                    </v-chip>  
+                </v-flex> 
 
               </v-layout>
             </div>
