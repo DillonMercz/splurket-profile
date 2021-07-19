@@ -386,7 +386,29 @@ display:block;
           <div class="form-group">
             <label class="col-lg-3 control-label">Skills:</label>
             <div class="col-lg-8">
-              <textarea class="form-control" type="text" id="skills" value=""></textarea>
+              <v-layout wrap>
+        <v-flex xs12>
+          <v-combobox multiple
+                    v-model="select" 
+                    label="Tags" 
+                    append-icon
+                    chips
+                    deletable-chips
+                    class="tag-input"
+                    :delimiters="[',']"
+                    :search-input.sync="search" 
+                    @keyup.tab="updateTags"
+                    @paste="updateTags">
+          </v-combobox>
+        </v-flex>
+        
+            <v-chip close v-for="tag in select"
+                    color="success" 
+                    text-color="white">
+             &nbsp; <v-icon left>label</v-icon>{{tag}}
+            </v-chip>  
+
+      </v-layout>
             </div>
           </div>
           
