@@ -43,9 +43,7 @@ var email1;
             //still splurket
             
             var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Access-Control-Allow-Origin", "*")
-            myHeaders.append("Accept", "application/json, /;q=0.5");
+            myHeaders.append("Content-Type", "text/plain");
 
             var raw = JSON.stringify({
               "flemishGiant": `${email1}`
