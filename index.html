@@ -300,6 +300,8 @@ display:block;
       >
 
         <template v-slot:default="props">
+          <v-container fill-height fluid>
+          <v-row align="center" justify="center">
               <v-card 
               style="width:350px"
               v-for="item in props.items"
@@ -338,7 +340,9 @@ display:block;
                     </v-list-item-content>
                   </v-list-item>-->
               </v-card>
-          </v-row>
+            </v-row>
+          </v-container>
+
         </template>
     <template v-slot:header="props">
             <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:350px">
