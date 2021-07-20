@@ -345,7 +345,9 @@ display:block;
 
         </template>
     <template v-slot:header="props">
-            <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:350px">
+            <div style="height:100%;width:100%;position:absolute;right:0px;z-index:3;top:350px">
+              <v-container fill-height fluid>
+                <v-row align="center" justify="center">
                 <v-tabs color="#52b36c">
                 <v-tab>General Settings</v-tab>
                   <v-tab-item
@@ -526,6 +528,8 @@ display:block;
           </v-tab-item>
 
           </v-tabs></center>
+        </v-row>
+      </v-container>
 </div>
 </template>
        <!-- <template v-slot:footer>
