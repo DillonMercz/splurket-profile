@@ -362,7 +362,7 @@ display:block;
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <button type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white" onclick="savechanges()" value="Save Changes">Save Changes</button>
+              <v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white" onclick="savechanges()" value="Save Changes">Save Changes</v-btn>
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
@@ -727,6 +727,11 @@ var email1;
                     console.log("Error getting document:", error);
                 });
         }
+        function rendercreatorstuff(){
+          document.getElementById("location").value = doc.Location;
+            document.getElementById("education").value = doc.Education;
+            document.getElementById("tagline").value = doc.tagline;
+        }
 function getuserprodata(prodata){
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
@@ -736,9 +741,6 @@ function getuserprodata(prodata){
             var skills1=doc.Skills
             skills2=skills1.split(',');
             skills2.forEach((skill3) => {skills.push(skill3)});
-            document.getElementById("location").value = doc.Location;
-            document.getElementById("education").value = doc.Education;
-            document.getElementById("tagline").value = doc.tagline;
             var push_data1 = {value: false, name: `${doc.username}`, image: `${doc.image}`, location: `${doc.Location}`, education: `${doc.Education}`, date: `${doc.Date}`, tag: `${doc.tagline}`, reviewsn: reviewsint, skills: skills}
             if (user_data.includes('{')){
               var push_data = ','+push_data1;
@@ -1059,16 +1061,7 @@ new Vue({
   this.$nextTick(function () {
     // Code that will run only after the
     // entire view has been rendered
-    var img1= document.getElementById("myImage")
-    observer = new MutationObserver((changes) => {
-      changes.forEach(change => {
-          if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
-              update_pic(img1.src);
-              console.log(img1.src)
-          }
-      });
-    });
-    observer.observe(img1, {attributes : true});
+    rendercreatorstuff()
 
   })
 },
@@ -1141,6 +1134,54 @@ for (var i in list) {
                 company_send = document.getElementById("company").value;
                 phone_send = document.getElementById("phone").value;
                 db.collection('users').doc(email1).update({
+                        first_name: first_name_send,
+                        last_name: last_name_send,
+                        //username: username_send,
+                        email: email_send,
+                        discord: discord_send,
+                        phone_number: phone_send,
+                        company: company_send,
+            })
+          });
+        }
+        function savecreatorchanges() {
+          var user = firebase.auth().currentUser;
+            //splurket@gmail.com
+            var email1 = user.email;
+            
+            /*var email = getParameterByName('user'); 
+            console.log(email)*/
+            //still splurket
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "text/plain");
+
+            var raw = JSON.stringify({
+              "flemishGiant": `${email1}`
+            });
+            //document.write(raw)
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: raw,
+              redirect: 'follow'
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbwd3VKlX6ajjUYSkrg9YOEu3fDg-F0PJsRvv8ia0bhPX6OHn_Lk1a4N7dVx3nKEacui/exec", requestOptions)
+              .then(function (response) {
+                  return response.json();
+              })
+              .then(function (data) {
+                //should be a base64 string by now
+                email1 = data.encryptedstring;
+                first_name_send = document.getElementById("first_name").value;
+                last_name_send = document.getElementById("last_name").value;
+                username_send = document.getElementById("username").value;
+                email_send = document.getElementById("email").value;
+                discord_send = document.getElementById("discord").value;
+                company_send = document.getElementById("company").value;
+                phone_send = document.getElementById("phone").value;
+                db.collection('pubusers').doc(email1).update({
                         first_name: first_name_send,
                         last_name: last_name_send,
                         //username: username_send,
