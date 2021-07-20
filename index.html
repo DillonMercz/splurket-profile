@@ -1046,12 +1046,6 @@ app = new Vue({
       items: user_data,
       items1: [],
       search: ""};},
-      mounted: {
-        async mounted() {
-          await this.$nextTick();
-          this.update_field();
-        }
-      },
   computed: {
     numberOfPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
@@ -1232,15 +1226,14 @@ for (var i in list) {
                 console.log(source)
           });
         }
+      function tryupdate(){
+        try{
         app.update_field()
-        app.update_field()
-        app.update_field()
-        app.update_field()
-        app.update_field()
-        app.update_field()
-        app.update_field()
-        app.update_field()
-        
+      }catch(err){
+        tryupdate()
+      }
+    }
+    tryupdate()
   </script>
 <script src="croppie/croppie.js"></script>
 </body>
