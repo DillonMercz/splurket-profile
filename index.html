@@ -1046,6 +1046,12 @@ app = new Vue({
       items: user_data,
       items1: [],
       search: ""};},
+      mounted: {
+        async mounted() {
+        await this.$nextTick();
+        this.test();
+      }
+      },
   computed: {
     numberOfPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
