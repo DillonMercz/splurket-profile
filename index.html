@@ -300,7 +300,7 @@ display:block;
       >
 
         <template v-slot:default="props">
-            <div
+            <v-col
               v-for="item in props.items"
               :key="item.name"
             >
@@ -339,8 +339,7 @@ display:block;
                     </v-list-item-content>
                   </v-list-item>-->
               </v-card>
-              
-            </div>
+              </v-col>
           </v-row>
         </template>
     <template v-slot:header="props">
