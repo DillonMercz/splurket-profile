@@ -372,7 +372,7 @@ display:block;
                         <v-tab-item>
                           <h3 style="color: #52b36c;margin-left:25px">Splurket Creator Profile</h3>
                           <v-divider style="width:25%;margin-left:25px"></v-divider>
-          <form class="form-horizontal" role="form"style="width:50%">
+          <form class="form-horizontal" role="form"style="width:50%" onload="app.update_field()">
           <div class="form-group">
             <label class="col-lg-3 control-label">Tagline</label>
             <div class="col-lg-8">
@@ -744,9 +744,6 @@ function getuserprodata(prodata){
               user_data.push(push_data1)
      
             }//document.write(product_data)
-            document.getElementById("location").value = doc.Location;
-            document.getElementById("education").value = doc.Education;
-            document.getElementById("tagline").value = doc.tagline;
           } else {
               // doc.data() will be undefined in this case
               user_data=[{
@@ -1057,6 +1054,11 @@ new Vue({
     } },
 
   methods: {
+    update_field(){
+      document.getElementById("location").value = this.items.location;
+      document.getElementById("education").value = this.items.education;
+      document.getElementById("tagline").value = this.items.tag;
+    },
       updateTags() {
       this.$nextTick(() => {
         this.skills.push(...this.search.split(","));
