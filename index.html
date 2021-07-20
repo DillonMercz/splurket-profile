@@ -728,9 +728,11 @@ var email1;
                 });
         }
 function getuserprodata(prodata){
+  var elementsdoc;
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
       if (doc.exists) {
+        elementsdoc = doc.data()
             var doc= doc.data();
             var reviewsint= parseFloat(`${doc.Reviewsn}`)
             var skills1=doc.Skills
@@ -1226,14 +1228,12 @@ for (var i in list) {
                 console.log(source)
           });
         }
-      function tryupdate(){
-        try{
-        app.update_field()
-      }catch(err){
-        tryupdate()
-      }
-    }
-    tryupdate()
+        window.addEventListener('load', function () {
+          var items = elementsdoc
+      document.getElementById("location").value = items.Location;
+      document.getElementById("education").value =items.Education;
+      document.getElementById("tagline").value = items.tagline;
+})
   </script>
 <script src="croppie/croppie.js"></script>
 </body>
