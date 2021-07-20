@@ -302,7 +302,7 @@ display:block;
             <div
               v-for="item in props.items"
               :key="item.name"
-              style="position:absolute;"
+              style="position:relative;"
             >
               <v-card :id="item.name">
                 <div style="
@@ -344,7 +344,7 @@ display:block;
           </v-row>
         </template>
     <template v-slot:header="props">
-            <div style="height:100%;width:100%;position:absolute">
+            <div style="height:100%;width:100%;position:relative;">
                 <center><v-tabs color="#52b36c"></center>
                 <v-tab>General Settings</v-tab>
                   <v-tab-item
