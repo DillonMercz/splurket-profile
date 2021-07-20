@@ -727,11 +727,6 @@ var email1;
                     console.log("Error getting document:", error);
                 });
         }
-        function rendercreatorstuff(){
-          document.getElementById("location").value = doc.Location;
-            document.getElementById("education").value = doc.Education;
-            document.getElementById("tagline").value = doc.tagline;
-        }
 function getuserprodata(prodata){
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
@@ -749,6 +744,9 @@ function getuserprodata(prodata){
               user_data.push(push_data1)
      
             }//document.write(product_data)
+            document.getElementById("location").value = doc.Location;
+            document.getElementById("education").value = doc.Education;
+            document.getElementById("tagline").value = doc.tagline;
           } else {
               // doc.data() will be undefined in this case
               user_data=[{
@@ -1057,9 +1055,7 @@ new Vue({
     filteredKeys() {
       return this.keys.filter(key => key !== 'Name');
     } },
-  mounted: function () {
-    rendercreatorstuff()
-},
+
   methods: {
       updateTags() {
       this.$nextTick(() => {
