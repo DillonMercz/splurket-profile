@@ -298,53 +298,9 @@ display:block;
         disable-pagination
         dense
       >
-
-        <template v-slot:default="props">
-          <v-row align="center" justify="center">
-              <v-card 
-              style="width:350px;margin-top:20px"
-              v-for="item in props.items"
-              :id="item.name">
-                <div style="
-                    height: 5px;
-                "></div>
-                <center><img
-                  height="150px"
-                  width="150px"
-                  :src="item.image"
-                  id="myImage"
-                  onclick="document.getElementById('upload_image').click()"
-                  onchange="update_pic(this.src)"
-                  style="border-radius: 50%;margin-top:50px"
-                ></img></center>
-              </div>
-                <center><v-card-title class="subheading font-weight-bold" :id="item.id" style="display:block">
-                  {{ item.name }}
-                </v-card-title></center>
-                <strong><center><p style="font-family: 'Shadows Into Light Two';font-size:15px">{{ item.tag }}</p></center></strong><br>
-  
-                <!--<v-list dense>
-                  <v-list-item
-                    v-for="(key, index) in filteredKeys"
-                    :key="index"
-                  >
-                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
-                      {{ key }}:
-                    </v-list-item-content>
-                    <v-list-item-content
-                      class="align-end"
-                      :class="{ 'blue--text': sortBy === key }"
-                    >
-                      {{ item[key.toLowerCase()] }}
-                    </v-list-item-content>
-                  </v-list-item>-->
-              </v-card>
-            </v-row>
-
-        </template>
     <template v-slot:header="props">
-            <center><div style="height:100%;width:100%;position:absolute;right:0px;z-index:3;top:370px">
-                <v-tabs color="#52b36c" centered center-active>
+            <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:20px">
+                <v-tabs color="#52b36c">
                 <v-tab>General Settings</v-tab>
                   <v-tab-item
                   >
@@ -415,7 +371,7 @@ display:block;
                 </v-tab-item> <v-tab>Creator Settings</v-tab>
                         <v-tab-item>
                           <h3 style="color: #52b36c">Splurket Creator Profile</h3>
-                          <v-divider style="width:25%"></v-divider>
+                          <v-divider style="width:20%"></v-divider>
           <form class="form-horizontal" role="form"style="width:50%">
           <div class="form-group">
             <label class="col-lg-3 control-label">Location</label>
@@ -524,8 +480,57 @@ display:block;
           </v-tab-item>
 
           </v-tabs></center>
-</div></center>
+</div>
 </template>
+  
+        <template v-slot:default="props">
+            <v-col
+              v-for="item in props.items"
+              :key="item.name"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+            >
+              <v-card :id="item.name">
+                <div style="
+                    height: 5px;
+                "></div>
+                <center><img
+                  height="150px"
+                  width="150px"
+                  :src="item.image"
+                  id="myImage"
+                  onclick="document.getElementById('upload_image').click()"
+                  onchange="update_pic(this.src)"
+                  style="border-radius: 50%;margin-top:50px"
+                ></img></center>
+              </div>
+                <center><v-card-title class="subheading font-weight-bold" :id="item.id" style="display:block">
+                  {{ item.name }}
+                </v-card-title></center>
+                <strong><center><p style="font-family: 'Shadows Into Light Two';font-size:15px">{{ item.tag }}</p></center></strong><br>
+  
+                <!--<v-list dense>
+                  <v-list-item
+                    v-for="(key, index) in filteredKeys"
+                    :key="index"
+                  >
+                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                      {{ key }}:
+                    </v-list-item-content>
+                    <v-list-item-content
+                      class="align-end"
+                      :class="{ 'blue--text': sortBy === key }"
+                    >
+                      {{ item[key.toLowerCase()] }}
+                    </v-list-item-content>
+                  </v-list-item>-->
+              </v-card>
+              
+            </v-col>
+          </v-row>
+        </template>
        <!-- <template v-slot:footer>
           <v-row
             class="mt-2"
