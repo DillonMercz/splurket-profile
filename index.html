@@ -299,13 +299,9 @@ display:block;
         dense
       >
       <template v-slot:default="props">
-            <v-col
+            <div
               v-for="item in props.items"
               :key="item.name"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
             >
               <v-card :id="item.name">
                 <div style="
@@ -343,7 +339,7 @@ display:block;
                   </v-list-item>-->
               </v-card>
               
-            </v-col>
+            </div>
           </v-row>
         </template>
     <template v-slot:header="props">
