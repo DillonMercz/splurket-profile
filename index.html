@@ -372,7 +372,7 @@ display:block;
                         <v-tab-item>
                           <h3 style="color: #52b36c;margin-left:25px">Splurket Creator Profile</h3>
                           <v-divider style="width:25%;margin-left:25px"></v-divider>
-          <form class="form-horizontal" role="form"style="width:50%" onload="app.update_field()">
+          <form class="form-horizontal" role="form"style="width:50%">
           <div class="form-group">
             <label class="col-lg-3 control-label">Tagline</label>
             <div class="col-lg-8">
@@ -728,16 +728,17 @@ var email1;
                 });
         }
 function getuserprodata(prodata){
-  var elementsdoc;
   var docRef = db.collection('pubusers').doc(prodata);
     docRef.get().then((doc) => {
       if (doc.exists) {
-        elementsdoc = doc.data()
             var doc= doc.data();
             var reviewsint= parseFloat(`${doc.Reviewsn}`)
             var skills1=doc.Skills
             skills2=skills1.split(',');
             skills2.forEach((skill3) => {skills.push(skill3)});
+            document.getElementById("location").value = doc.Location;
+            document.getElementById("education").value = doc.Education;
+            document.getElementById("tagline").value = doc.tagline;
             var push_data1 = {value: false, name: `${doc.username}`, image: `${doc.image}`, location: `${doc.Location}`, education: `${doc.Education}`, date: `${doc.Date}`, tag: `${doc.tagline}`, reviewsn: reviewsint, skills: skills}
             if (user_data.includes('{')){
               var push_data = ','+push_data1;
@@ -1018,8 +1019,7 @@ function getuserprodata(prodata){
       // An error happened.
     });
     }
-
-app = new Vue({
+new Vue({
   el: '#app',
     vuetify: new Vuetify(),
   data() {
@@ -1055,13 +1055,24 @@ app = new Vue({
     filteredKeys() {
       return this.keys.filter(key => key !== 'Name');
     } },
+  mounted: function () {
+  this.$nextTick(function () {
+    // Code that will run only after the
+    // entire view has been rendered
+    var img1= document.getElementById("myImage")
+    observer = new MutationObserver((changes) => {
+      changes.forEach(change => {
+          if(change.attributeName.includes('src') && img1.src.includes("data:image/") && img1.src.includes('base64')){
+              update_pic(img1.src);
+              console.log(img1.src)
+          }
+      });
+    });
+    observer.observe(img1, {attributes : true});
 
+  })
+},
   methods: {
-    update_field(){
-      document.getElementById("location").value = this.items.location;
-      document.getElementById("education").value = this.items.education;
-      document.getElementById("tagline").value = this.items.tag;
-    },
       updateTags() {
       this.$nextTick(() => {
         this.skills.push(...this.search.split(","));
@@ -1228,12 +1239,6 @@ for (var i in list) {
                 console.log(source)
           });
         }
-        window.addEventListener('load', function () {
-          var items = elementsdoc
-      document.getElementById("location").value = items.Location;
-      document.getElementById("education").value =items.Education;
-      document.getElementById("tagline").value = items.tagline;
-})
   </script>
 <script src="croppie/croppie.js"></script>
 </body>
