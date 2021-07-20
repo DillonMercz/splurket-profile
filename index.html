@@ -736,6 +736,9 @@ function getuserprodata(prodata){
             var skills1=doc.Skills
             skills2=skills1.split(',');
             skills2.forEach((skill3) => {skills.push(skill3)});
+            document.getElementById("location").value = doc.Location;
+            document.getElementById("education").value = doc.Education;
+            document.getElementById("tagline").value = doc.tagline;
             var push_data1 = {value: false, name: `${doc.username}`, image: `${doc.image}`, location: `${doc.Location}`, education: `${doc.Education}`, date: `${doc.Date}`, tag: `${doc.tagline}`, reviewsn: reviewsint, skills: skills}
             if (user_data.includes('{')){
               var push_data = ','+push_data1;
