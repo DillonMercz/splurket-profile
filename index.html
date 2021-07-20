@@ -299,14 +299,10 @@ display:block;
         dense
       >
 
-        <center><template v-slot:default="props">
-            <v-col
+        <template v-slot:default="props">
+            <div
               v-for="item in props.items"
               :key="item.name"
-              cols="1"
-              sm="6"
-              md="4"
-              lg="3"
             >
               <v-card :id="item.name">
                 <div style="
@@ -344,9 +340,9 @@ display:block;
                   </v-list-item>-->
               </v-card>
               
-            </v-col>
+            </div>
           </v-row>
-        </template></center>
+        </template>
     <template v-slot:header="props">
             <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:20px">
                 <v-tabs color="#52b36c">
