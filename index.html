@@ -1058,12 +1058,7 @@ new Vue({
       return this.keys.filter(key => key !== 'Name');
     } },
   mounted: function () {
-  this.$nextTick(function () {
-    // Code that will run only after the
-    // entire view has been rendered
     rendercreatorstuff()
-
-  })
 },
   methods: {
       updateTags() {
