@@ -300,10 +300,10 @@ display:block;
       >
 
         <template v-slot:default="props">
-            <v-col
+            <v-row
               v-for="item in props.items"
               :key="item.name"
-              style="width:300px"
+              style="width:350px"
               class="d-flex justify-center"
             >
               <v-card :id="item.name">
@@ -341,7 +341,7 @@ display:block;
                     </v-list-item-content>
                   </v-list-item>-->
               </v-card>
-              </v-col>
+              </v-row>
           </v-row>
         </template>
     <template v-slot:header="props">
