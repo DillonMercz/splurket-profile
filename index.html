@@ -438,15 +438,19 @@ display:block;
         </v-tab-item>
         <v-tab>Pay Settings</v-tab>
         <v-tab-item>
-         <v-btn
-          icon
-          style="color:#52b36c !important"
-          @click="opensesame()"
-        >
-          <v-icon dark>
-            mdi-plus
-          </v-icon>
-        </v-btn><h3 style="display: inline-block;color:#52b36c">New Card</h3>
+             <v-btn
+      color="#52b36c"
+      class="ma-2 white--text"
+      @click="opensesame()"
+    >
+      New Card
+      <v-icon
+        left
+        dark
+      >
+        mdi-plus
+      </v-icon>
+    </v-btn>
       <v-dialog
         v-model="dialog"
         persistent
