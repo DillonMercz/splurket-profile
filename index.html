@@ -490,15 +490,6 @@ display:block;
 </template>
   
         <template v-slot:default="props">
-            <v-col
-              v-for="item in props.items"
-              :key="item.name"
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
-              id="profilecolumn"
-            >
             <v-row 
               v-for="item in props.items"
               :key="item.name"
@@ -542,7 +533,7 @@ display:block;
                   </v-list-item>-->
               </v-card>
               </v-row>
-            </v-col>
+
           </v-row>
         </template>
        <!-- <template v-slot:footer>
