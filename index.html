@@ -438,6 +438,15 @@ display:block;
         </v-tab-item>
         <v-tab>Pay Settings</v-tab>
         <v-tab-item>
+         <v-btn
+          icon
+          style="color:#52b36c !important"
+          @click="opensesame()"
+        >
+          <v-icon dark>
+            mdi-plus
+          </v-icon>New Card
+        </v-btn>
       <v-dialog
         v-model="dialog"
         persistent
@@ -445,7 +454,6 @@ display:block;
       >
       <iframe src="./card.html" style="border: none; width: 100%; height: 100%;"></iframe>
       </v-dialog>
-                          <v-btn>New Card</v-btn>
           </v-tab-item>
           <v-tab>Messaging Settings</v-tab>
           <v-tab-item>
@@ -997,6 +1005,12 @@ app = new Vue({
     } },
 
   methods: {
+    opensesame(){
+      this.dialog = true
+    },
+    closesesame(){
+      this.dialog = false
+    }
     update_field(){
       document.getElementById("location").value = this.items.location;
       document.getElementById("education").value = this.items.education;
