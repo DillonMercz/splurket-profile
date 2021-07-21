@@ -409,6 +409,7 @@ display:block;
                             id = "skills">
                   </v-combobox>
                 </v-flex> 
+                <v-chip close v-for="tag in skills" class="skill" style="display:none">{{tag}}</v-chip> 
 
               </v-layout>
             </div>
@@ -1115,6 +1116,10 @@ for (var i in list) {
           });
         }
         function savecreatorchanges() {
+          var skill = document.getElementsByClassName("skill")
+          for(var i in skill){
+            console.log(skill[i].innerHTML)
+          }
           var user = firebase.auth().currentUser;
             //splurket@gmail.com
             var email1 = user.email;
@@ -1144,21 +1149,14 @@ for (var i in list) {
               .then(function (data) {
                 //should be a base64 string by now
                 email1 = data.encryptedstring;
-                first_name_send = document.getElementById("first_name").value;
-                last_name_send = document.getElementById("last_name").value;
-                username_send = document.getElementById("username").value;
-                email_send = document.getElementById("email").value;
-                discord_send = document.getElementById("discord").value;
-                company_send = document.getElementById("company").value;
-                phone_send = document.getElementById("phone").value;
-                db.collection('pubusers').doc(email1).update({
-                        first_name: first_name_send,
-                        last_name: last_name_send,
+                var location = document.getElementById("first_name").value;
+                var education = document.getElementById("last_name").value;
+                var tagline = document.getElementById("username").value;
+                db.collection('pubusers').doc(username).update({
+                        Education: education,
+                        Location: location,
                         //username: username_send,
-                        email: email_send,
-                        discord: discord_send,
-                        phone_number: phone_send,
-                        company: company_send,
+                        tagline: tagline,
             })
           });
         }
