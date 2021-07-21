@@ -1126,6 +1126,7 @@ for (var i in list) {
           }
           }
           console.log(skills)
+          var skills = skills.join(", ")
           var user = firebase.auth().currentUser;
             //splurket@gmail.com
             var email1 = user.email;
@@ -1163,6 +1164,7 @@ for (var i in list) {
                         Location: location,
                         //username: username_send,
                         tagline: tagline,
+                        skills: skills,
             })
           });
         }
