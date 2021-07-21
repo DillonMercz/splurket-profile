@@ -1119,7 +1119,10 @@ for (var i in list) {
           var skills =[]
           for(var i in skill){
             console.log(skill[i].innerHTML)
-            skills.push(skill[i].innerHTML.replace('<button type="button" aria-label="Close" class="v-icon notranslate v-chip__close v-icon--link v-icon--right mdi mdi-close-circle theme--light" style="font-size: 18px;"></button>',""))
+            var skill1=skill[i].innerHTML
+            var skill2 = skill1.toString()
+            var skill3 = skill2.replace('<button type="button" aria-label="Close" class="v-icon notranslate v-chip__close v-icon--link v-icon--right mdi mdi-close-circle theme--light" style="font-size: 18px;"></button>',"")
+            skills.push(skill3)
           }
           console.log(skills)
           var user = firebase.auth().currentUser;
