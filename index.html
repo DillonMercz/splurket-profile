@@ -409,7 +409,6 @@ display:block;
                             id = "skills">
                   </v-combobox>
                 </v-flex> 
-                <v-chip close v-for="tag in skills" class="skill" style="display:none">{{tag}}</v-chip> 
 
               </v-layout>
             </div>
@@ -1116,7 +1115,7 @@ for (var i in list) {
           });
         }
         function savecreatorchanges() {
-          var skill = document.getElementsByClassName("skill")
+          var skill = document.getElementsByClassName("v-chip__content")
           for(var i in skill){
             console.log(skill[i].innerHTML)
           }
