@@ -300,7 +300,7 @@ display:block;
       >
     <template v-slot:header="props">
             <div style="height:100%;width:70%;position:absolute;right:0px;z-index:3;top:20px">
-                <v-tabs color="#52b36c" show-arrows = "true">
+                <v-tabs color="#52b36c" show-arrows = "true" centered center-active>
                 <v-tab>General Settings</v-tab>
                   <v-tab-item
                   >
@@ -497,8 +497,10 @@ display:block;
               sm="6"
               md="4"
               lg="3"
+              id="profilecolumn"
             >
-              <v-card :id="item.name">
+            <v-row align="center" justify="center" style="display:none">
+              <v-card id="profilecard">
                 <div style="
                     height: 5px;
                 "></div>
@@ -533,7 +535,7 @@ display:block;
                     </v-list-item-content>
                   </v-list-item>-->
               </v-card>
-              
+              </v-row>
             </v-col>
           </v-row>
         </template>
