@@ -1119,9 +1119,9 @@ for (var i in list) {
           for(var i in skill){
             var skill1 = skill[i].innerHTML
             console.log(skill1)
-            if (skill1 == "undefined"){
+            if (skill1 == "undefined" || skill1 == undefined){
               //console.log("value is undefined")
-            }else{
+            }else if(skill1 != "undefined" || skill1 != undefined){
             skills.push(skill1)
           }
           }
