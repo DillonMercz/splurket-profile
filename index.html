@@ -1118,7 +1118,7 @@ for (var i in list) {
           var skill = document.getElementsByClassName("v-chip__content")
           var skills =[]
           for(var i in skill){
-            console.log(skill[i].innerHTML.replace('<button type="button" aria-label="Close" class="v-icon notranslate v-chip__close v-icon--link v-icon--right mdi mdi-close-circle theme--light" style="font-size: 18px;"></button>',"")
+            console.log(skill[i].innerHTML)
             skills.push(skill[i].innerHTML.replace('<button type="button" aria-label="Close" class="v-icon notranslate v-chip__close v-icon--link v-icon--right mdi mdi-close-circle theme--light" style="font-size: 18px;"></button>',""))
           }
           var user = firebase.auth().currentUser;
