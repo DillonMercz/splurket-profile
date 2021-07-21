@@ -1119,7 +1119,11 @@ for (var i in list) {
           for(var i in skill){
             var skill1 = skill[i].innerHTML
             console.log(skill1)
+            if (skill1 == "undefined"){
+              //console.log("value is undefined")
+            }else{
             skills.push(skill1)
+          }
           }
           console.log(skills)
           var user = firebase.auth().currentUser;
