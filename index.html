@@ -436,9 +436,16 @@ display:block;
           </div>
         </form>
         </v-tab-item>
-                    <v-tab>Pay Settings</v-tab>
-                        <v-tab-item>
-                          <iframe src="./card.html" style="border:none;width:100%;height:100%"></iframe>
+        <v-tab>Pay Settings</v-tab>
+        <v-tab-item>
+      <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="600px"
+      >
+      <iframe src="./card.html" style="border: none; width: 100%; height: 100%;"></iframe>
+      </v-dialog>
+                          <v-btn>New Card</v-btn>
           </v-tab-item>
           <v-tab>Messaging Settings</v-tab>
           <v-tab-item>
@@ -956,6 +963,7 @@ app = new Vue({
     vuetify: new Vuetify(),
   data() {
     return {
+      dialog:false
       itemsPerPageArray: [15, 25, 50],
       search: '',
       filter: {},
