@@ -1006,9 +1006,7 @@ var email1;
                 getuserdata1(data);
             });
           } else {
-            console.log('fuck')
-            document.getElementById("avatar").style.display = "none";
-            document.getElementById("login").style.display = "block";
+            window.top.location.href='https://accounts.splurket.com?redirect='+window.top.location.href
           }
         });
 
