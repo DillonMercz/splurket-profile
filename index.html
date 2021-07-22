@@ -835,13 +835,9 @@ display:block;
               </select>
             </div>
           </div>
-          <v-btn>Save Billing Address</v-btn>
-          <div class="outcome">
-            <div class="error"></div>
-            <div class="success">
-              Success! Your Stripe token is <span class="token"></span>
-            </div>
-          </div>
+          <v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white" onclick="savecreatorchanges()" value="Save Changes">Save Address</v-btn>
+          <span></span>
+          <v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white" onclick="window.location.reload()" value="Cancel">Cancel</v-btn>
         </form>
       </body>
 
