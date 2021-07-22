@@ -1396,6 +1396,7 @@ for (var i in list) {
         function signout() {
             firebase.auth().signOut().then(() => {
               // Sign-out successful.
+              window.top.location.href='https://accounts.splurket.com?redirect='+window.top.location.href
             }).catch((error) => {
               // An error happened.
             });
