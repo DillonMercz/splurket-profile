@@ -861,6 +861,7 @@ display:block;
                     </v-list-item-content>
                   </v-list-item>-->
               </v-card>
+              <center><v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white" onclick="signout()" value="Sign Out">Sign Out</v-btn></center>
               </v-row>
             </v-col>
           </v-row>
@@ -1622,7 +1623,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
   };
   stripe.createToken(card, options).then(setOutcome);
 });
-
   </script>
 <script src="croppie/croppie.js"></script>
 </body>
