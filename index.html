@@ -296,6 +296,15 @@ html {
   margin-bottom: 20px;
 }
 
+.label1 {
+  position: relative;
+  color: #8898AA;
+  font-weight: 300;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+}
 
 .group label:not(:last-child) {
   border-bottom: 1px solid #F0F5FA;
@@ -579,33 +588,33 @@ display:block;
           <input type="hidden" name="token" />
 
           <div class="group">
-            <label>
+            <div class="label1">
               <span>Address</span>
               <input id="address-line1" name="address_line1" class="field" placeholder="77 Winchester Lane" />
-            </label>
-            <label>
+            </div>
+            <div class="label1">
               <span>Address (cont.)</span>
               <input id="address-line2" name="address_line2" class="field" placeholder="" />
-            </label>
-            <label>
+            </div>
+            <div class="label1">
               <span>City</span>
               <input id="address-city" name="address_city" class="field" placeholder="Coachella" />
-            </label>
-            <label>
+            </div>
+            <div class="label1">
               <span>State</span>
               <input id="address-state" name="address_state" class="field" placeholder="SA" />
-            </label>
-            <label>
+            </div>
+            <div class="label1">
               <span>ZIP</span>
               <input id="address-zip" name="address_zip" class="field" placeholder="92236" />
-            </label>
-            <label>
+            </div>
+            <div class="label1">
               <span>Country</span>
               <select name="address_country" id="address-country" class="field">
                 <option value="IN">India</option>
                 <option value="SG" selected>Singapore</option>
               </select>
-            </label>
+            </div>
           </div>
           <button type="submit">Pay $25</button>
           <div class="outcome">
