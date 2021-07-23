@@ -1326,6 +1326,7 @@ app = new Vue({
   data() {
     return {
       dialog:false,
+      verifypass:false,
       itemsPerPageArray: [15, 25, 50],
       search: '',
       filter: {},
@@ -1359,6 +1360,12 @@ app = new Vue({
     } },
 
   methods: {
+    openverify(){
+      this.verifypass = true
+    },
+    closeverify(){
+      this.verifypass = false
+    },
     opensesame(){
       this.dialog = true
     },
