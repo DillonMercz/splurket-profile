@@ -232,6 +232,9 @@ new Vue({
     }
   },
   methods: {
+    openverify(){
+      window.top.openverify()
+    },
     flipCard (status) {
       this.isCardFlipped = status;
     },
@@ -256,9 +259,6 @@ new Vue({
     }
   }
 });
-function openverify(){
-  window.top.openverify()
-    }
   </script>
 
 </body>
