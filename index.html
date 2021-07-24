@@ -527,11 +527,12 @@ display:block;
         v-model="verifypass"
         persistent
         max-width="600px"
-        style="background-color:white;"
+        style="background-color:white !important;"
         v-for="thing in profile_pic"
       >
 	      <center><h1>Verify Password</h1></center>
-        <img :src="thing.image">
+        <img :src="thing.image" height="150px" width="150px">
+        <h3 style="display: inline-block;">{{ thing.name }}</h3>
       </v-dialog>
       <h3 style="color: #52b36c;margin-left:60px">Billing Information</h3>
       <v-divider style="width:25%;margin-left:60px"></v-divider>
