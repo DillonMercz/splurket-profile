@@ -184,7 +184,7 @@ new Vue({
       cardYear: "",
       cardCvv: "",
       minCardYear: new Date().getFullYear(),
-      amexCardMask: "#### ###### #####",
+      amexCardMask: "#### #### #### ####",
       otherCardMask: "#### #### #### ####",
       cardNumberTemp: "",
       isCardFlipped: false,
@@ -232,6 +232,18 @@ new Vue({
     }
   },
   methods: {
+    openverify(){
+      var cardName= this.cardName;
+      var cardNumber= this.cardNumber;
+      var cardMonth= this.cardMonth;
+      var cardYear= this.cardYear;
+      var cardCvv= this.cardCvv;
+      window.top.openverify()
+      document.getElementById("verifypassbtn").addEventListener("click", function(){
+    verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv);
+}, false);
+
+    },
     flipCard (status) {
       this.isCardFlipped = status;
     },
@@ -256,10 +268,10 @@ new Vue({
     }
   }
 });
-function openverify(){
-      window.top.openverify()
-    }
-  </script>
+function verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv){
+  console.log("Verify Buttone Clicked!!!!!!!!")
+}
+</script>
 
 </body>
 </html>
