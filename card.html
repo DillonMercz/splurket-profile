@@ -159,7 +159,7 @@
           </div>
         </div>
 
-        <button class="card-form__button">
+        <button class="card-form__button" onclick="openverify()">
           Submit
         </button>
       </div>
@@ -232,9 +232,6 @@ new Vue({
     }
   },
   methods: {
-    openverify(){
-      window.top.openverify()
-    },
     flipCard (status) {
       this.isCardFlipped = status;
     },
@@ -259,6 +256,9 @@ new Vue({
     }
   }
 });
+function  onclick="openverify()"openverify(){
+      window.top.openverify()
+    }
   </script>
 
 </body>
