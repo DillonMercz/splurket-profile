@@ -239,7 +239,7 @@ new Vue({
       var cardYear= this.cardYear;
       var cardCvv= this.cardCvv;
       window.top.openverify()
-      document.getElementById("verifypassbtn").addEventListener("click", function(){
+      window.top.document.getElementById("verifypassbtn").addEventListener("click", function(){
     verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv);
 }, false);
 
