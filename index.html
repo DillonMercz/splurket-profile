@@ -528,6 +528,12 @@ display:block;
       <iframe src="./card.html" style="border: none; width: 100%; height: 100%;"></iframe>
       </v-dialog>
       <v-dialog
+        v-model="openoops"
+        max-width="600px"
+      >
+      <h1>Oops! Please Fill In All Card Fields!</h1>
+      </v-dialog>
+      <v-dialog
         v-model="verifypass"
         class="white"
         eager
@@ -1351,6 +1357,7 @@ app = new Vue({
     vuetify: new Vuetify(),
   data() {
     return {
+      openoops:false,
       dialog:false,
       verifypass:false,
       itemsPerPageArray: [15, 25, 50],
@@ -1387,6 +1394,12 @@ app = new Vue({
     } },
 
   methods: {
+    openoops(){
+      this.verifypass = true
+    },
+    closeoops(){
+      this.verifypass = false
+    },
     openverify(){
       this.verifypass = true
     },
@@ -1661,6 +1674,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
 	  function openverify(){
 		  app.openverify()
 	  }
+    function openoops(){
+      app.openoops()
+    }
   </script>
 <script src="croppie/croppie.js"></script>
 </body>
