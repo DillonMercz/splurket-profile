@@ -292,6 +292,11 @@ function startloading(){
 }
 function verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv){
   console.log("Verify Button Clicked!!!!!!!!", cardName.toString(), cardNumber.toString(), cardMonth.toString(), cardYear.toString(), cardCvv.toString())
+  cardName = cardName.toString()
+  cardNumber= cardNumber.toString()
+  cardMonth= cardMonth.toString()
+  cardYear= cardYear.toString()
+  cardCvv =cardCvv.toString()
   window.top.turnonloading()
   var password = window.top.document.getElementById("password").value
   email = window.top.email1
