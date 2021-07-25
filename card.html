@@ -335,6 +335,8 @@ function createpayment(){
 firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/plain");
 
 var raw1 =
             {
@@ -353,11 +355,12 @@ var raw = JSON.stringify(raw1);
 
 var requestOptions = {
   method: 'POST',
+  headers: myHeaders,
   body: raw,
   redirect: 'follow'
 };
 
-fetch("https://script.google.com/macros/s/AKfycbwFiljBA_zuTQOdvE1CUhz6s8qnr8AL9vX1wW_yTw1HMYxA142YlUlC2yncVPPNzs5Qnw/exec", requestOptions)
+fetch("http://script.google.com/macros/s/AKfycbwFiljBA_zuTQOdvE1CUhz6s8qnr8AL9vX1wW_yTw1HMYxA142YlUlC2yncVPPNzs5Qnw/exec", requestOptions)
   .then(response => response.text())
   .then(function (data) {
     addsuccess(data)
