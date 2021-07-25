@@ -534,6 +534,18 @@ display:block;
       <center><h1 style="padding:15px">Oops! Please Fill In All Card Fields!</h1></center>
       </v-dialog>
       <v-dialog
+        v-model="failed"
+        max-width="600px"
+      >
+      <center><h1 style="padding:15px">Adding Card Failed</h1></center>
+      </v-dialog>
+      <v-dialog
+        v-model="success"
+        max-width="600px"
+      >
+      <center><h1 style="padding:15px">Card Successfully Added!</h1></center>
+      </v-dialog>
+      <v-dialog
         v-model="verifypass"
         class="white"
         eager
@@ -1364,6 +1376,8 @@ app = new Vue({
     vuetify: new Vuetify(),
   data() {
     return {
+      success:false,
+      failed:false,
       loading:false,
       openoops:false,
       dialog:false,
