@@ -540,6 +540,13 @@ display:block;
       <center><h1 style="padding:15px">Adding Card Failed</h1></center>
       </v-dialog>
       <v-dialog
+        v-model="invalidcard"
+        max-width="600px"
+      >
+      <center><h1 style="padding:15px">Creating Payment Method Failed!</h1></center><br>
+      <center><p>Card may Be invalid</p></center>
+      </v-dialog>
+      <v-dialog
         v-model="password"
         max-width="600px"
       >
@@ -1382,6 +1389,8 @@ app = new Vue({
     vuetify: new Vuetify(),
   data() {
     return {
+      invalidcard: false,
+      password:false,
       success:false,
       failed:false,
       loading:false,

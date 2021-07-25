@@ -380,17 +380,25 @@ fetch("https://script.google.com/macros/s/AKfycbzXL-QbX9qSUaKZ8osCfF6PcZXHW8BO0k
 function addsuccess(result){
   console.log(result)
   if(result == "Error Getting User"){
-    
+    window.top.app.password=true;
+  }
+  if(result =="An Error Occured While Creating Payment Method"){
+    window.top.app.invalidcard=true;
+  }
+  if(result="Error Adding Payment Method"){
+    window.top.app.failed=true;
   }
   window.top.app.verifypass = false
   var password = window.top.document.getElementById("password").value = "";
   window.top.app.loading = false;
   window.top.app.dialog = false;
   window.top.app.success=true;
+  this.location.reload()
+
 
 }
 function addfail(){
-  window.top.app.fail = true
+  window.top.app.failed = true
 }
 </script>
 
