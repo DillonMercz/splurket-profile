@@ -55,6 +55,18 @@
                 </template>
 
                 <template v-else>
+                  <v-dialog
+                  v-model ="loading"
+                  persistent
+                  >
+                  <v-progress-circular
+                  :rotate="360"
+                  :size="100"
+                  :width="15"
+                  color="#52b36c"
+                >
+                </v-progress-circular>
+              </v-dialog>
                   <span v-for="(n, $index) in otherCardMask" :key="$index">
                     <transition name="slide-fade-up">
                       <div
@@ -173,10 +185,11 @@
 See on github: https://github.com/muhammederdem/credit-card-form
 */
 
-new Vue({
+app1 = new Vue({
   el: "#app",
   data() {
     return {
+      loading: false,
       currentCardBackground: Math.floor(Math.random()* 25 + 1), // just for fun :D
       cardName: "",
       cardNumber: "",
@@ -272,8 +285,13 @@ new Vue({
     }
   }
 });
+function startloading(){
+
+}
 function verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv){
-  console.log("Verify Buttone Clicked!!!!!!!!", cardName, cardNumber, cardMonth, cardYear, cardCvv)
+  console.log("Verify Button Clicked!!!!!!!!", cardName, cardNumber, cardMonth, cardYear, cardCvv)
+  window.top.closeverify()
+  app1.loading = true
 }
 </script>
 
