@@ -335,8 +335,6 @@ function createpayment(){
 firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain");
 
 var raw1 =
             {
