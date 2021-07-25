@@ -547,6 +547,7 @@ display:block;
         <center><img :src="thing.image" style="height:50px;width:50px"></center>
         <center><h3 style="display: inline;">{{ thing.name }}</h3></center><br>
         <center><v-text-field
+        :loading="loading"
          id="password" 
          label ="Password"
          color="#52b36c"
@@ -1357,6 +1358,7 @@ app = new Vue({
     vuetify: new Vuetify(),
   data() {
     return {
+      loading:false,
       openoops:false,
       dialog:false,
       verifypass:false,
@@ -1679,6 +1681,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
     }
     function openoops(){
       app.openoops = true;
+    }
+    function turnonloading(){
+      app.loading=true
     }
   </script>
 <script src="croppie/croppie.js"></script>
