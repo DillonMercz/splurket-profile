@@ -553,8 +553,13 @@ display:block;
          color="#52b36c"
          style="width:70%"
          ></v-text-field></center>
-         <center><v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white;float: left;" @click ="closeverify()" value="Cancel">Cancel</v-btn></center>
-         <center><v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white;"  id ="verifypassbtn" value="Verify Password">Verify Password</v-btn></center><br>
+           <v-row
+    align="center"
+    justify="space-around"
+  >
+         <v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white;float: left;" @click ="closeverify()" value="Cancel">Cancel</v-btn>
+         <v-btn type="button" class="btn btn-primary" style="background-color: #52b36c;border-color: #52b36c;color:white;"  id ="verifypassbtn" value="Verify Password">Verify Password</v-btn>
+       </v-row><br>
       </v-dialog>
       <h3 style="color: #52b36c;margin-left:60px">Billing Information</h3>
       <v-divider style="width:25%;margin-left:60px"></v-divider>
