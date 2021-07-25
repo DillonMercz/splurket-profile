@@ -341,7 +341,12 @@ label > span {
 .v-dialog .v-dialog--active{
     background-color: white !important;
 }
-
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px){
+  #profilecardrow{
+    width:100%;
+  }
+}
 </style>
 
     <!-- Header.. -->
@@ -888,7 +893,8 @@ display:block;
               :key="item.name"
               align="center" 
               justify="center"
-              style="width:400px">
+              style="width:400px"
+              id="profilecardrow">
 
               <v-card id="profilecard" style="min-width:350px">
                 <div style="
