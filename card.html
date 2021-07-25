@@ -384,12 +384,15 @@ function addsuccess(result){
   if(result == "Error Getting User"){
     window.top.app.password=true;
      window.top.app.loading = false;
+     window.top.app.success=false;
   }else if(result =="An Error Occured While Creating Payment Method"){
     window.top.app.invalidcard=true;
      window.top.app.loading = false;
+     window.top.app.success=false;
   }else if(result=="Error Adding Payment Method"){
     window.top.app.failed=true;
      window.top.app.loading = false;
+     window.top.app.success=false;
   }else{
   window.top.app.verifypass = false
   window.top.document.getElementById("password").value = "";
