@@ -316,7 +316,8 @@ function verifypass(cardName, cardNumber, cardMonth, cardYear, cardCvv){
   window.top.turnonloading()
   var password = window.top.document.getElementById("password").value
   email = window.top.email1
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+  
+firebase.auth().signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
     // Signed in 
     var myHeaders = new Headers();
