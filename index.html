@@ -531,7 +531,7 @@ display:block;
         v-model="openoops"
         max-width="600px"
       >
-      <h1 style="padding:15px">Oops! Please Fill In All Card Fields!</h1>
+      <center><h1 style="padding:15px">Oops! Please Fill In All Card Fields!</h1></center>
       </v-dialog>
       <v-dialog
         v-model="verifypass"
@@ -1672,7 +1672,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
   stripe.createToken(card, options).then(setOutcome);
 });
 	  function openverify(){
-		  app.openverify()
+		  app.openverify = true
 	  }
     function closeverify(){
       app.openverify = false
