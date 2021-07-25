@@ -382,10 +382,11 @@ function addsuccess(){
   var password = window.top.document.getElementById("password").value = "";
   window.top.app.loading = false;
   window.top.app.dialog = false;
+  window.top.succes=true;
 
 }
 function addfail(){
-  window.top.app.fail = false
+  window.top.app.fail = true
 }
 </script>
 
