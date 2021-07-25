@@ -383,13 +383,11 @@ function addsuccess(result){
   console.log(result)
   if(result == "Error Getting User"){
     window.top.app.password=true;
-  }
-  if(result =="An Error Occured While Creating Payment Method"){
+  }else if(result =="An Error Occured While Creating Payment Method"){
     window.top.app.invalidcard=true;
-  }
-  if(result="Error Adding Payment Method"){
+  }else if(result="Error Adding Payment Method"){
     window.top.app.failed=true;
-  }
+  }else{
   window.top.app.verifypass = false
   window.top.document.getElementById("password").value = "";
   window.top.app.loading = false;
@@ -397,7 +395,7 @@ function addsuccess(result){
   window.top.app.success=true;
   this.location.reload()
 
-
+}
 }
 function addfail(){
   window.top.app.failed = true
