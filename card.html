@@ -312,6 +312,8 @@ function verifypass(){
   cardMonth= app1.cardMonth.toString()
   cardYear= app1.cardYear.toString()
   cardCvv = app1.cardCvv.toString()
+  console.log("Verify Button Clicked!!!!!!!!", cardName.toString(), cardNumber.toString(), cardMonth.toString(), cardYear.toString(), cardCvv.toString())
+
   if (cardName =="" || cardNumber =="" || cardMonth =="" || cardYear =="" || cardCvv ==""){
         window.top.openoops()
       }else if(cardName !="" && cardNumber!="" && cardMonth!="" && cardYear!="" && cardCvv!="" ){
